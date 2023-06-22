@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/scanner_select_dialog.xml",
+        "source": "com.honeywell.barcodeexample.app-main-7:/layout/scanner_select_dialog.xml"
+    },
+    {
+        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/settings_screen.xml",
+        "source": "com.honeywell.barcodeexample.app-main-7:/layout/settings_screen.xml"
+    },
+    {
+        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/activity_selection_barcode.xml",
+        "source": "com.honeywell.barcodeexample.app-main-7:/layout/activity_selection_barcode.xml"
+    },
+    {
+        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/activity_main.xml",
+        "source": "com.honeywell.barcodeexample.app-main-7:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/activity_barcode.xml",
+        "source": "com.honeywell.barcodeexample.app-main-7:/layout/activity_barcode.xml"
+    },
+    {
+        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/scan_screen.xml",
+        "source": "com.honeywell.barcodeexample.app-main-7:/layout/scan_screen.xml"
+    }
+]

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.honeywell.barcodeexample.app-mergeDebugResources-44:/values-large-v4/values-large-v4.xml",
+            "outputFile": "com.honeywell.barcodeexample.app-mergeDebugResources-3:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
                     "source": "C:\\Users\\d1intern.D1\\.gradle\\caches\\transforms-3\\090f337ed676e5ed26d304bf1a78644b\\transformed\\material-1.9.0\\res\\values-large-v4\\values-large-v4.xml",

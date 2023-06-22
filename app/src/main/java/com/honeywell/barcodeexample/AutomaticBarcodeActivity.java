@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -11,8 +14,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.media.session.MediaSessionManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,14 +29,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.pm.ActivityInfo;
 
+import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.honeywell.aidc.*;
 
 import org.w3c.dom.Text;
 
-public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.BarcodeListener, BarcodeReader.TriggerListener{
+public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.BarcodeListener, BarcodeReader.TriggerListener {
 
+    //region variables
     private com.honeywell.aidc.BarcodeReader barcodeReader;
     private ListView barcodeList;
     private Button homeButton;
@@ -39,18 +47,22 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     private ArrayList<String> scannedItems;
 
     private int currCount;
+    private int maxCount;
     private TextView counter;
     private TextView timer;
     private int mode;
-    private BroadcastReceiver mReceiver;
+
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Settings"));
         mode = getIntent().getIntExtra("mode", 0);
         scannedData = new ArrayList<>();
         scannedItems = new ArrayList<>();
         currCount = 0;
+        maxCount = -1;
         setContentView(R.layout.scan_screen);
         counter = (TextView) findViewById(R.id.counter);
         timer = (TextView) findViewById(R.id.timer);
@@ -122,12 +134,12 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
         ActivitySetting();
     }
 
+    //region Barcode Methods
     @Override
     public void onBarcodeEvent(final BarcodeReadEvent event) {
         runOnUiThread(new Runnable() {
             @Override
-            public void run()
-            {
+            public void run() {
                 // update UI to reflect the data
                 ArrayList<String> list = new ArrayList<String>();
                 list.add("Barcode data: " + event.getBarcodeData());
@@ -141,7 +153,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                 final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AutomaticBarcodeActivity.this, android.R.layout.simple_list_item_1, scannedItems);
                 barcodeList.setAdapter(dataAdapter);
                 currCount = scannedItems.size();
-                counter.setText("COUNT: " + currCount);
+                setCounter();
                 if (mode == 1) {
                     try {
                         barcodeReader.aim(false);
@@ -202,10 +214,14 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     public void onFailureEvent(BarcodeFailureEvent arg0) {
         // TODO Auto-generated method stub
     }
+    //endregion
 
+    //region Activity Methods
     @Override
     public void onResume() {
         super.onResume();
+        filter.addAction("Settings");
+        registerReceiver(mReceiver, filter);
         if (barcodeReader != null) {
             try {
                 barcodeReader.claim();
@@ -237,6 +253,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
             barcodeReader.removeTriggerListener(this);
         }
     }
+    //endregion
 
     public void ActivitySetting() {
         homeButton = (Button) findViewById(R.id.homeButton);
@@ -264,25 +281,42 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                 // get the intent action string from AndroidManifest.xml
                 Intent intent = new Intent("android.intent.action.SETTINGS");
                 intent.putExtra("frag", mode);
+                intent.putExtra("timer", timer.getVisibility() == View.VISIBLE);
+                intent.putExtra("countAmnt", maxCount);
                 startActivity(intent);
             }
         });
 
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if(intent.getBooleanExtra("time", false))
-                {
-                    timer.setVisibility(View.VISIBLE);
-                }
-            }
-        };
+
     }
-}
-/*
-if (((Global) getApplication()).isTimerOn()) {
+
+    //region BroadcastReceiver from settings
+    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getBooleanExtra("time", false)) {
                 timer.setVisibility(View.VISIBLE);
             } else {
                 timer.setVisibility(View.INVISIBLE);
             }
- */
+            maxCount = intent.getIntExtra("count", 0);
+            if (maxCount != -1) {
+                counter.setVisibility(View.VISIBLE);
+                setCounter();
+            } else {
+                counter.setVisibility(View.INVISIBLE);
+            }
+        }
+    };
+    IntentFilter filter = new IntentFilter();
+
+    //endregion
+    private void setCounter() {
+        if (maxCount != 0) {
+            counter.setText("COUNT: " + currCount + "/" + maxCount);
+        } else {
+            counter.setText("COUNT: " + currCount);
+        }
+    }
+
+}

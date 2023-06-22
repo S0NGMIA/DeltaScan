@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.honeywell.barcodeexample.app-mergeDebugResources-44:/values-km/values-km.xml",
+            "outputFile": "com.honeywell.barcodeexample.app-mergeDebugResources-3:/values-km/values-km.xml",
             "map": [
                 {
                     "source": "C:\\Users\\d1intern.D1\\.gradle\\caches\\transforms-3\\55dedc70b95a473650eda30d4efd0f99\\transformed\\core-1.9.0\\res\\values-km\\values-km.xml",

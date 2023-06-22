@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.honeywell.barcodeexample.app-mergeDebugResources-44:/values-el/values-el.xml",
+            "outputFile": "com.honeywell.barcodeexample.app-mergeDebugResources-3:/values-el/values-el.xml",
             "map": [
                 {
                     "source": "C:\\Users\\d1intern.D1\\.gradle\\caches\\transforms-3\\62f04f34bfc9b54cab3497d469e80da3\\transformed\\navigation-ui-2.6.0\\res\\values-el\\values-el.xml",
