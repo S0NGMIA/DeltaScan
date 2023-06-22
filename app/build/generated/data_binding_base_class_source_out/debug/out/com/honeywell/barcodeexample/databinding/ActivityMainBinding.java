@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -28,12 +29,17 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final Button scan;
 
+  @NonNull
+  public final TextView textView;
+
   private ActivityMainBinding(@NonNull FrameLayout rootView,
-      @NonNull Button buttonScannerSelectBarcode, @NonNull Button paint, @NonNull Button scan) {
+      @NonNull Button buttonScannerSelectBarcode, @NonNull Button paint, @NonNull Button scan,
+      @NonNull TextView textView) {
     this.rootView = rootView;
     this.buttonScannerSelectBarcode = buttonScannerSelectBarcode;
     this.paint = paint;
     this.scan = scan;
+    this.textView = textView;
   }
 
   @Override
@@ -81,8 +87,14 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textView;
+      TextView textView = ViewBindings.findChildViewById(rootView, id);
+      if (textView == null) {
+        break missingId;
+      }
+
       return new ActivityMainBinding((FrameLayout) rootView, buttonScannerSelectBarcode, paint,
-          scan);
+          scan, textView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
