@@ -1,0 +1,58 @@
+[
+    {
+        "merged": "com.honeywell.barcodeexample.app-merged_res-46:/layout_settings_screen.xml.flat",
+        "source": "com.honeywell.barcodeexample.app-main-48:/layout/settings_screen.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\drawable-mdpi_barcode_example_icon.png.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\drawable-mdpi\\barcode_example_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\layout_fragment_barcode_analysis.xml.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\layout\\fragment_barcode_analysis.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\drawable-ldpi_barcode_example_icon.png.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\drawable-ldpi\\barcode_example_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\menu_activity_main.xml.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\menu\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\layout_activity_selection_barcode.xml.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\layout\\activity_selection_barcode.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\drawable-hdpi_barcode_example_icon.png.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\drawable-hdpi\\barcode_example_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\layout_scan_screen.xml.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\layout\\scan_screen.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\drawable-xhdpi_barcode_example_icon.png.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\drawable-xhdpi\\barcode_example_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\layout_activity_barcode.xml.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\layout\\activity_barcode.xml"
+    },
+    {
+        "merged": "com.honeywell.barcodeexample.app-merged_res-46:/layout_scan_screen.xml.flat",
+        "source": "com.honeywell.barcodeexample.app-main-48:/layout/scan_screen.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\layout_settings_screen.xml.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\layout\\settings_screen.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-merged_res-46:\\layout_scanner_select_dialog.xml.flat",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-48:\\layout\\scanner_select_dialog.xml"
+    }
+]
