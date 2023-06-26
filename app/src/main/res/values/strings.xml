@@ -33,7 +33,7 @@
     <string name="timer">TIMER</string>
     <string name="numScan"># TO SCAN</string>
     <string name="appTitle">Delta Scan</string>
-    <string name="time">TIME: 0.0s</string>
+    <string name="time">TIME: 0s</string>
     <string name="count">COUNT: </string>
     <string name="enableCount">COUNTER </string>
 </resources>

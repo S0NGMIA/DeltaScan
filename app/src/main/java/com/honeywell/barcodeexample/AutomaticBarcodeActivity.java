@@ -51,6 +51,9 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     private TextView counter;
     private TextView timer;
     private int mode;
+    private int startTime;
+    private Timer myTimer;
+    private boolean isTimerOn;
 
     //endregion
 
@@ -63,6 +66,8 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
         scannedItems = new ArrayList<>();
         currCount = 0;
         maxCount = -1;
+        startTime = -1;
+        isTimerOn = false;
         setContentView(R.layout.scan_screen);
         counter = (TextView) findViewById(R.id.counter);
         timer = (TextView) findViewById(R.id.timer);
@@ -122,6 +127,8 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
             //TODO if else statement here for continous scanning
             if (mode == 0) {
                 properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_CONTINUOUS);
+            } else {
+                properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_ONESHOT);
             }
 
 
@@ -154,19 +161,10 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                 barcodeList.setAdapter(dataAdapter);
                 currCount = scannedItems.size();
                 setCounter();
-                if (mode == 1) {
-                    try {
-                        barcodeReader.aim(false);
-                        barcodeReader.light(false);
-                        barcodeReader.decode(false);
-                    } catch (ScannerUnavailableException e) {
-                        e.printStackTrace();
-                        //Toast.makeText(this, "Scanner unavailable", Toast.LENGTH_SHORT).show();
-                    } catch (ScannerNotClaimedException e) {
-                        //throw new RuntimeException(e);
-                        e.printStackTrace();
-                        //Toast.makeText(this, "Scanner unavailable", Toast.LENGTH_SHORT).show();
-                    }
+                if (timer.isShown() && !isTimerOn) {
+                    isTimerOn = true;
+                    startTime = (int) (System.currentTimeMillis() / 1000);
+                    startTimer();
                 }
             }
         });
@@ -298,6 +296,8 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                 timer.setVisibility(View.VISIBLE);
             } else {
                 timer.setVisibility(View.INVISIBLE);
+                startTime = -1;
+                timer.setText("TIME: " + 0 + "s");
             }
             maxCount = intent.getIntExtra("count", 0);
             if (maxCount != -1) {
@@ -319,4 +319,36 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
         }
     }
 
+    private String getCurrTime() {
+        String time = "";
+        int sec = ((int) (System.currentTimeMillis() / 1000)) - startTime;
+        if (sec > 60) {
+            int min = sec / 60;
+            sec = sec % 60;
+            time += min + "min " + sec + "s";
+        } else {
+            time += sec + "s";
+        }
+        return time;
+    }
+
+    private void startTimer() {
+        myTimer = new Timer();
+        myTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                AutomaticBarcodeActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (maxCount > 0 && currCount >= maxCount) {
+                            isTimerOn = false;
+                            myTimer.cancel();
+                            return;
+                        }
+                        timer.setText("TIME: " + getCurrTime());
+                    }
+                });
+            }
+        }, 1000, 1000);
+    }
 }
