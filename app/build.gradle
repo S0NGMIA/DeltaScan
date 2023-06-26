@@ -83,3 +83,7 @@ android {
         enabled = true
     }
 }
+
+dependencies {
+    implementation 'com.google.firebase:protolite-well-known-types:18.0.0'
+}

@@ -16,6 +16,7 @@ MERGED from [com.google.android.material:material:1.9.0] C:\Users\d1intern.D1\.g
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\d1intern.D1\.gradle\caches\transforms-3\30f4c334bb9586b8299d31214a27cc88\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\d1intern.D1\.gradle\caches\transforms-3\802b9a5c342fc698ed20453692f600f7\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\d1intern.D1\.gradle\caches\transforms-3\f519227ce83c25a4daf72bc8b7b65062\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\a8d301462dee3d4e90bc16a320266697\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\453a69a9d6f52c4c104a2eaab1c33f1f\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.6.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\a3565269d31b948e7eca229f2de8ed42\transformed\fragment-1.6.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.fragment:fragment-ktx:1.6.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\07c00460c12727ae2ee5ef66a7022b71\transformed\fragment-ktx-1.6.0\AndroidManifest.xml:17:1-22:12
@@ -108,6 +109,8 @@ MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\d1intern.D1\
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\d1intern.D1\.gradle\caches\transforms-3\802b9a5c342fc698ed20453692f600f7\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\d1intern.D1\.gradle\caches\transforms-3\f519227ce83c25a4daf72bc8b7b65062\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\d1intern.D1\.gradle\caches\transforms-3\f519227ce83c25a4daf72bc8b7b65062\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\a8d301462dee3d4e90bc16a320266697\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\a8d301462dee3d4e90bc16a320266697\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\453a69a9d6f52c4c104a2eaab1c33f1f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\453a69a9d6f52c4c104a2eaab1c33f1f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.6.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\a3565269d31b948e7eca229f2de8ed42\transformed\fragment-1.6.0\AndroidManifest.xml:20:5-44
@@ -235,7 +238,7 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\d1intern.D1\.gradl
 	android:label
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:12:9-41
 	android:icon
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:11:9-54
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:11:9-52
 	android:allowBackup
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:9:9-35
 	android:theme

@@ -2963,6 +2963,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable d1sw_logo
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
@@ -3526,7 +3527,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView
 id textWatcher
 id text_input_end_icon
 id text_input_error_icon
@@ -3775,6 +3775,9 @@ layout select_dialog_singlechoice_material
 layout settings_screen
 layout support_simple_spinner_dropdown_item
 menu activity_main
+mipmap d1sw_logo
+mipmap d1sw_logo_foreground
+mipmap d1sw_logo_round
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
 string abc_action_bar_up_description

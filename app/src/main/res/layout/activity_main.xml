@@ -57,12 +57,12 @@
             app:layout_constraintVertical_bias="0.341" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:shadowColor="#80000000"
+            android:shadowColor="#59000000"
             android:shadowDy="10"
             android:shadowRadius="10"
             android:text="Delta Scan"

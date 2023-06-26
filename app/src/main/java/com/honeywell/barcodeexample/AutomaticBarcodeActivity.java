@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,6 +33,7 @@ import android.content.pm.ActivityInfo;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.type.Date;
 import com.honeywell.aidc.*;
 
 import org.w3c.dom.Text;
@@ -148,15 +150,16 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
             @Override
             public void run() {
                 // update UI to reflect the data
+                String timeScanned = "" + event.getTimestamp().substring(0, 10) + "   " + event.getTimestamp().substring(11, 16);
                 ArrayList<String> list = new ArrayList<String>();
                 list.add("Barcode data: " + event.getBarcodeData());
                 list.add("Character Set: " + event.getCharset());
                 list.add("Code ID: " + event.getCodeId());
                 list.add("AIM ID: " + event.getAimId());
-                list.add("Timestamp: " + event.getTimestamp());
+                list.add("Timestamp: " + timeScanned);
 
                 scannedData.add(list);
-                scannedItems.add("Barcode " + scannedData.size());
+                scannedItems.add(0, "" + scannedData.size() + ".) " + event.getBarcodeData());
                 final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AutomaticBarcodeActivity.this, android.R.layout.simple_list_item_1, scannedItems);
                 barcodeList.setAdapter(dataAdapter);
                 currCount = scannedItems.size();

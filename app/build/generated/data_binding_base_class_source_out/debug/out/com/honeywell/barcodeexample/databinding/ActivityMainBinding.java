@@ -30,16 +30,16 @@ public final class ActivityMainBinding implements ViewBinding {
   public final Button scan;
 
   @NonNull
-  public final TextView textView;
+  public final TextView title;
 
   private ActivityMainBinding(@NonNull FrameLayout rootView,
       @NonNull Button buttonScannerSelectBarcode, @NonNull Button paint, @NonNull Button scan,
-      @NonNull TextView textView) {
+      @NonNull TextView title) {
     this.rootView = rootView;
     this.buttonScannerSelectBarcode = buttonScannerSelectBarcode;
     this.paint = paint;
     this.scan = scan;
-    this.textView = textView;
+    this.title = title;
   }
 
   @Override
@@ -87,14 +87,14 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textView;
-      TextView textView = ViewBindings.findChildViewById(rootView, id);
-      if (textView == null) {
+      id = R.id.title;
+      TextView title = ViewBindings.findChildViewById(rootView, id);
+      if (title == null) {
         break missingId;
       }
 
       return new ActivityMainBinding((FrameLayout) rootView, buttonScannerSelectBarcode, paint,
-          scan, textView);
+          scan, title);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

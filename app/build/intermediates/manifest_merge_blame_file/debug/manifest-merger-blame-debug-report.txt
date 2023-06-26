@@ -36,8 +36,8 @@
 22-->[androidx.core:core:1.9.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\55dedc70b95a473650eda30d4efd0f99\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 23        android:debuggable="true"
 24        android:extractNativeLibs="false"
-25        android:icon="@drawable/barcode_example_icon"
-25-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:11:9-54
+25        android:icon="@mipmap/d1sw_logo_foreground"
+25-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:11:9-52
 26        android:label="@string/app_name"
 26-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:12:9-41
 27        android:testOnly="true"
