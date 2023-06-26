@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.media.session.MediaSessionManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,6 +57,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     private int startTime;
     private Timer myTimer;
     private boolean isTimerOn;
+    private MediaPlayer scanSound;
 
     //endregion
 
@@ -63,6 +65,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Settings"));
+        scanSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         mode = getIntent().getIntExtra("mode", 0);
         scannedData = new ArrayList<>();
         scannedItems = new ArrayList<>();
@@ -149,6 +152,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                scanSound.start();
                 // update UI to reflect the data
                 String timeScanned = "" + event.getTimestamp().substring(0, 10) + "   " + event.getTimestamp().substring(11, 16);
                 ArrayList<String> list = new ArrayList<String>();
