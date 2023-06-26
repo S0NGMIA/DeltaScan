@@ -19,12 +19,14 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class SettingsActivity extends Activity {
+    //region Variables
     private Button backButton;
     private CheckBox timer;
     private CheckBox counter;
     private CheckBox sound;
     private TextView counterText;
     private EditText counterInput;
+    //endregion
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_screen);
@@ -36,6 +38,15 @@ public class SettingsActivity extends Activity {
         if(getIntent().getIntExtra("frag", 0)==0)
         {
             counter.setVisibility(View.VISIBLE);
+            if(getIntent().getIntExtra("countAmnt", -1)!=-1){
+                counter.setChecked(true);
+                counterInput.setVisibility(View.VISIBLE);
+                counterText.setVisibility(View.VISIBLE);
+                counterInput.setText(""+getIntent().getIntExtra("countAmnt", 0));
+            }
+        }
+        if(getIntent().getBooleanExtra("timer", false)){
+            timer.setChecked(true);
         }
         ActivitySetting();
     }
@@ -45,16 +56,15 @@ public class SettingsActivity extends Activity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*((Global) getApplication()).setTimer(timer.isChecked());
-                if(counter.isChecked() && !counterInput.getText().toString().isEmpty()){
-                    ((Global) getApplication()).setMaxCount(Integer.parseInt(counterInput.getText().toString()));
-                }
-                Intent intent = new Intent("android.intent.action.SETTINGSSET");
-                sendBroadcast(intent);*/
                 Intent intent = new Intent("Settings");
                 intent.putExtra("time", timer.isChecked());
-                if(counter.isChecked() && !counterInput.getText().toString().isEmpty()){
-                    intent.putExtra("count", Integer.parseInt(counterInput.getText().toString()));
+                if(counter.isChecked()){
+                   if(!counterInput.getText().toString().isEmpty()) {
+                       intent.putExtra("count", Integer.parseInt(counterInput.getText().toString()));
+                   }
+                   else{
+                       intent.putExtra("count", 0);
+                   }
                 }
                 else{
                     intent.putExtra("count", -1);

@@ -1,0 +1,266 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.honeywell.barcodeexample"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+7-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:6:5-73
+8        android:minSdkVersion="24"
+8-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:6:15-41
+9        android:targetSdkVersion="33" />
+9-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:6:42-71
+10
+11    <uses-permission android:name="com.honeywell.decode.permission.DECODE" />
+11-->[:DataCollectionLib] C:\Company\Projects\BarcodeExampleV2\DataCollectionLib\build\.transforms\63dd535e0fce187a003fd7aeb0fb186a\transformed\DataCollection\AndroidManifest.xml:11:5-78
+11-->[:DataCollectionLib] C:\Company\Projects\BarcodeExampleV2\DataCollectionLib\build\.transforms\63dd535e0fce187a003fd7aeb0fb186a\transformed\DataCollection\AndroidManifest.xml:11:22-75
+12
+13    <permission
+13-->[androidx.core:core:1.9.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\55dedc70b95a473650eda30d4efd0f99\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+14        android:name="com.honeywell.barcodeexample.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+14-->[androidx.core:core:1.9.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\55dedc70b95a473650eda30d4efd0f99\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+15        android:protectionLevel="signature" />
+15-->[androidx.core:core:1.9.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\55dedc70b95a473650eda30d4efd0f99\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+16
+17    <uses-permission android:name="com.honeywell.barcodeexample.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+17-->[androidx.core:core:1.9.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\55dedc70b95a473650eda30d4efd0f99\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+17-->[androidx.core:core:1.9.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\55dedc70b95a473650eda30d4efd0f99\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+18
+19    <application
+19-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:8:5-70:19
+20        android:name="com.honeywell.barcodeexample.Global"
+20-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:10:9-31
+21        android:allowBackup="true"
+21-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:9:9-35
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.9.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\55dedc70b95a473650eda30d4efd0f99\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+23        android:debuggable="true"
+24        android:extractNativeLibs="false"
+25        android:icon="@mipmap/d1sw_logo_foreground"
+25-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:11:9-52
+26        android:label="@string/app_name"
+26-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:12:9-41
+27        android:testOnly="true"
+28        android:theme="@style/AppTheme" >
+28-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:13:9-40
+29        <activity
+29-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:9-25:20
+30            android:name="com.honeywell.barcodeexample.MainActivity"
+30-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:76-132
+31            android:exported="true"
+31-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:19-42
+32            android:label="@string/app_name" >
+32-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:43-75
+33            <intent-filter>
+33-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:15:13-19:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:16:17-68
+34-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:16:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:18:17-76
+36-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:18:27-74
+37            </intent-filter>
+38            <intent-filter>
+38-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:20:13-24:29
+39                <action android:name="android.intent.action.HOME" />
+39-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:21:17-68
+39-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:21:25-66
+40
+41                <category android:name="android.intent.category.DEFAULT" />
+41-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:17-75
+41-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:27-73
+42            </intent-filter>
+43        </activity>
+44        <activity
+44-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:9-32:20
+45            android:name="com.honeywell.barcodeexample.AutomaticBarcodeActivity"
+45-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:75-143
+46            android:exported="true"
+46-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:19-42
+47            android:label="@string/barcode" >
+47-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:43-74
+48            <intent-filter>
+48-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:27:13-31:29
+49                <action android:name="android.intent.action.SCANSCREEN" />
+49-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:28:17-74
+49-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:28:25-72
+50
+51                <category android:name="android.intent.category.DEFAULT" />
+51-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:17-75
+51-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:27-73
+52            </intent-filter>
+53        </activity>
+54        <activity
+54-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:9-39:20
+55            android:name="com.honeywell.barcodeexample.ClientBarcodeActivity"
+55-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:75-140
+56            android:exported="true"
+56-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:19-42
+57            android:label="@string/barcode" >
+57-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:43-74
+58            <intent-filter>
+58-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:34:13-38:29
+59                <action android:name="android.intent.action.CLIENTBARCODEACTIVITY" />
+59-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:35:17-85
+59-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:35:25-83
+60
+61                <category android:name="android.intent.category.DEFAULT" />
+61-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:17-75
+61-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:27-73
+62            </intent-filter>
+63        </activity>
+64        <activity
+64-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:9-46:20
+65            android:name="com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity"
+65-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:75-150
+66            android:exported="true"
+66-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:19-42
+67            android:label="@string/barcode" >
+67-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:43-74
+68            <intent-filter>
+68-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:41:13-45:29
+69                <action android:name="android.intent.action.SCANNERSELECTBARCODEACTIVITY" />
+69-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:42:17-92
+69-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:42:25-90
+70
+71                <category android:name="android.intent.category.DEFAULT" />
+71-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:17-75
+71-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:27-73
+72            </intent-filter>
+73        </activity>
+74        <activity
+74-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:9-53:20
+75            android:name="com.honeywell.barcodeexample.AnalysisActivity"
+75-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:76-136
+76            android:exported="true"
+76-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:19-42
+77            android:label="@string/analysis" >
+77-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:43-75
+78            <intent-filter>
+78-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:48:13-52:29
+79                <action android:name="android.intent.action.ANALYSIS" />
+79-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:49:17-72
+79-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:49:25-70
+80
+81                <category android:name="android.intent.category.DEFAULT" />
+81-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:17-75
+81-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:27-73
+82            </intent-filter>
+83        </activity>
+84        <activity
+84-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:9-60:20
+85            android:name="com.honeywell.barcodeexample.SettingsActivity"
+85-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:76-136
+86            android:exported="true"
+86-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:19-42
+87            android:label="@string/settings" >
+87-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:43-75
+88            <intent-filter>
+88-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:55:13-59:29
+89                <action android:name="android.intent.action.SETTINGS" />
+89-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:56:17-72
+89-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:56:25-70
+90
+91                <category android:name="android.intent.category.DEFAULT" />
+91-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:17-75
+91-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:23:27-73
+92            </intent-filter>
+93        </activity>
+94
+95        <receiver
+95-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:61:9-69:20
+96            android:name="com.honeywell.barcodeexample.Global"
+96-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:62:13-34
+97            android:exported="true" >
+97-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:63:13-36
+98            <intent-filter>
+98-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:64:13-68:29
+99                <action android:name="android.intent.action.SETTINGSSET" >
+99-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:65:17-67:26
+99-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:66:21-69
+100                </action>
+101            </intent-filter>
+102        </receiver>
+103
+104        <provider
+104-->[androidx.emoji2:emoji2:1.2.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\58734ab3db9d01442ffac75a0ea2bc68\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+105            android:name="androidx.startup.InitializationProvider"
+105-->[androidx.emoji2:emoji2:1.2.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\58734ab3db9d01442ffac75a0ea2bc68\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+106            android:authorities="com.honeywell.barcodeexample.androidx-startup"
+106-->[androidx.emoji2:emoji2:1.2.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\58734ab3db9d01442ffac75a0ea2bc68\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+107            android:exported="false" >
+107-->[androidx.emoji2:emoji2:1.2.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\58734ab3db9d01442ffac75a0ea2bc68\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+108            <meta-data
+108-->[androidx.emoji2:emoji2:1.2.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\58734ab3db9d01442ffac75a0ea2bc68\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+109                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+109-->[androidx.emoji2:emoji2:1.2.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\58734ab3db9d01442ffac75a0ea2bc68\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+110                android:value="androidx.startup" />
+110-->[androidx.emoji2:emoji2:1.2.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\58734ab3db9d01442ffac75a0ea2bc68\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+111            <meta-data
+111-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\d1intern.D1\.gradle\caches\transforms-3\25269b7bd72d9a2134a14b4ac7ff36e5\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+112                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+112-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\d1intern.D1\.gradle\caches\transforms-3\25269b7bd72d9a2134a14b4ac7ff36e5\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+113                android:value="androidx.startup" />
+113-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\d1intern.D1\.gradle\caches\transforms-3\25269b7bd72d9a2134a14b4ac7ff36e5\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+114            <meta-data
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+115                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+115-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+116                android:value="androidx.startup" />
+116-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+117        </provider>
+118
+119        <uses-library
+119-->[androidx.window:window:1.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\98fbcfdeb64a67de9fd697c6d31f0b08\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+120            android:name="androidx.window.extensions"
+120-->[androidx.window:window:1.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\98fbcfdeb64a67de9fd697c6d31f0b08\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+121            android:required="false" />
+121-->[androidx.window:window:1.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\98fbcfdeb64a67de9fd697c6d31f0b08\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+122        <uses-library
+122-->[androidx.window:window:1.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\98fbcfdeb64a67de9fd697c6d31f0b08\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+123            android:name="androidx.window.sidecar"
+123-->[androidx.window:window:1.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\98fbcfdeb64a67de9fd697c6d31f0b08\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+124            android:required="false" />
+124-->[androidx.window:window:1.0.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\98fbcfdeb64a67de9fd697c6d31f0b08\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+125
+126        <receiver
+126-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+127            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+128            android:directBootAware="false"
+128-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+129            android:enabled="true"
+129-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+130            android:exported="true"
+130-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+131            android:permission="android.permission.DUMP" >
+131-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+132            <intent-filter>
+132-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+133                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+133-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+133-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+134            </intent-filter>
+135            <intent-filter>
+135-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+136                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+137            </intent-filter>
+138            <intent-filter>
+138-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+139                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+140            </intent-filter>
+141            <intent-filter>
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+142                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\d1intern.D1\.gradle\caches\transforms-3\15243181c2f23928d559fe6eaa375031\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+143            </intent-filter>
+144        </receiver>
+145    </application>
+146
+147</manifest>
