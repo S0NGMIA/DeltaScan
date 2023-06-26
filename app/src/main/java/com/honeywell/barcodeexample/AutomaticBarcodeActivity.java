@@ -57,7 +57,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     private int startTime;
     private Timer myTimer;
     private boolean isTimerOn;
-    private MediaPlayer scanSound;
+    private boolean soundEnabled;
 
     //endregion
 
@@ -65,7 +65,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Settings"));
-        scanSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
+        soundEnabled = true;
         mode = getIntent().getIntExtra("mode", 0);
         scannedData = new ArrayList<>();
         scannedItems = new ArrayList<>();
@@ -127,7 +127,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
             properties.put(BarcodeReader.PROPERTY_NOTIFICATION_BAD_READ_ENABLED, true);
             // Sets time period for decoder timeout in any mode
             properties.put(BarcodeReader.PROPERTY_DECODER_TIMEOUT, 400);
-
+            properties.put(BarcodeReader.PROPERTY_NOTIFICATION_GOOD_READ_ENABLED, false);
             //Set the scanning mode to continuous if needed
             //TODO if else statement here for continous scanning
             if (mode == 0) {
@@ -135,7 +135,6 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
             } else {
                 properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_ONESHOT);
             }
-
 
             // Apply the settings
             barcodeReader.setProperties(properties);
@@ -152,7 +151,9 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                scanSound.start();
+                if (soundEnabled) {
+                    MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound).start();
+                }
                 // update UI to reflect the data
                 String timeScanned = "" + event.getTimestamp().substring(0, 10) + "   " + event.getTimestamp().substring(11, 16);
                 ArrayList<String> list = new ArrayList<String>();
@@ -288,6 +289,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                 intent.putExtra("frag", mode);
                 intent.putExtra("timer", timer.getVisibility() == View.VISIBLE);
                 intent.putExtra("countAmnt", maxCount);
+                intent.putExtra("sound", soundEnabled);
                 startActivity(intent);
             }
         });
@@ -313,6 +315,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
             } else {
                 counter.setVisibility(View.INVISIBLE);
             }
+            soundEnabled=intent.getBooleanExtra("sound", true);
         }
     };
     IntentFilter filter = new IntentFilter();

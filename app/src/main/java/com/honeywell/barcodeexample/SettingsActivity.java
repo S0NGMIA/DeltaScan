@@ -48,6 +48,9 @@ public class SettingsActivity extends Activity {
         if(getIntent().getBooleanExtra("timer", false)){
             timer.setChecked(true);
         }
+        if(getIntent().getBooleanExtra("sound", false)){
+            sound.setChecked(true);
+        }
         ActivitySetting();
     }
 
@@ -58,6 +61,7 @@ public class SettingsActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent("Settings");
                 intent.putExtra("time", timer.isChecked());
+                intent.putExtra("sound", sound.isChecked());
                 if(counter.isChecked()){
                    if(!counterInput.getText().toString().isEmpty()) {
                        intent.putExtra("count", Integer.parseInt(counterInput.getText().toString()));
