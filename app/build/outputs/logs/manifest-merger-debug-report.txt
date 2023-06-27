@@ -248,11 +248,11 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\d1intern.D1\.gradl
 activity#com.honeywell.barcodeexample.MainActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:9-25:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:43-75
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:43-76
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:19-42
 	android:name
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:76-132
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:77-133
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:15:13-19:29
 action#android.intent.action.MAIN
@@ -276,11 +276,11 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.AutomaticBarcodeActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:9-32:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:43-74
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:43-76
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:19-42
 	android:name
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:75-143
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:77-145
 intent-filter#action:name:android.intent.action.SCANSCREEN+category:name:android.intent.category.DEFAULT
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:27:13-31:29
 action#android.intent.action.SCANSCREEN
@@ -290,11 +290,11 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.ClientBarcodeActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:9-39:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:43-74
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:43-76
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:19-42
 	android:name
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:75-140
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:77-142
 intent-filter#action:name:android.intent.action.CLIENTBARCODEACTIVITY+category:name:android.intent.category.DEFAULT
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:34:13-38:29
 action#android.intent.action.CLIENTBARCODEACTIVITY
@@ -304,11 +304,11 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:9-46:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:43-74
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:43-76
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:19-42
 	android:name
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:75-150
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:77-152
 intent-filter#action:name:android.intent.action.SCANNERSELECTBARCODEACTIVITY+category:name:android.intent.category.DEFAULT
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:41:13-45:29
 action#android.intent.action.SCANNERSELECTBARCODEACTIVITY
@@ -318,11 +318,11 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.AnalysisActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:9-53:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:43-75
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:43-76
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:19-42
 	android:name
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:76-136
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:77-137
 intent-filter#action:name:android.intent.action.ANALYSIS+category:name:android.intent.category.DEFAULT
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:48:13-52:29
 action#android.intent.action.ANALYSIS
@@ -332,11 +332,11 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.SettingsActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:9-60:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:43-75
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:43-76
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:19-42
 	android:name
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:76-136
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:77-137
 intent-filter#action:name:android.intent.action.SETTINGS+category:name:android.intent.category.DEFAULT
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:55:13-59:29
 action#android.intent.action.SETTINGS

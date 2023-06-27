@@ -11,7 +11,7 @@
         android:icon="@mipmap/d1sw_logo_foreground"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:exported="true" android:label="@string/app_name" android:name="com.honeywell.barcodeexample.MainActivity">
+        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -23,35 +23,35 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="@string/barcode" android:name="com.honeywell.barcodeexample.AutomaticBarcodeActivity">
+        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.AutomaticBarcodeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SCANSCREEN"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="@string/barcode" android:name="com.honeywell.barcodeexample.ClientBarcodeActivity">
+        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.ClientBarcodeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.CLIENTBARCODEACTIVITY"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="@string/barcode" android:name="com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity">
+        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SCANNERSELECTBARCODEACTIVITY"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="@string/analysis" android:name="com.honeywell.barcodeexample.AnalysisActivity">
+        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.AnalysisActivity">
             <intent-filter>
                 <action android:name="android.intent.action.ANALYSIS"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="@string/settings" android:name="com.honeywell.barcodeexample.SettingsActivity">
+        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.SettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SETTINGS"/>
 

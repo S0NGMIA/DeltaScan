@@ -75,7 +75,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
         maxCount = -1;
         startTime = -1;
         isTimerOn = false;
-        scanOn=false;
+        scanOn = false;
         setContentView(R.layout.scan_screen);
         counter = (TextView) findViewById(R.id.counter);
         timer = (TextView) findViewById(R.id.timer);
@@ -154,33 +154,35 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (timer.isShown() && !isTimerOn) {
-                    isTimerOn = true;
-                    startTime = (int) (System.currentTimeMillis() / 1000);
-                    startTimer();
-                }
-                // update UI to reflect the data
-                String timeScanned = "" + event.getTimestamp().substring(0, 10) + "   " + event.getTimestamp().substring(11, 16);
-                ArrayList<String> list = new ArrayList<String>();
-                list.add("Barcode data: " + event.getBarcodeData());
-                list.add("Character Set: " + event.getCharset());
-                list.add("Code ID: " + event.getCodeId());
-                list.add("AIM ID: " + event.getAimId());
-                list.add("Timestamp: " + timeScanned);
-                for(ArrayList<String> l : scannedData){
-                    if(l.get(0).equals(list.get(0))){
-                        return;
+                if (maxCount <= 0 || currCount < maxCount) {
+                    if (timer.isShown() && !isTimerOn) {
+                        isTimerOn = true;
+                        startTime = (int) (System.currentTimeMillis() / 1000);
+                        startTimer();
                     }
+                    // update UI to reflect the data
+                    String timeScanned = "" + event.getTimestamp().substring(0, 10) + "   " + event.getTimestamp().substring(11, 16);
+                    ArrayList<String> list = new ArrayList<String>();
+                    list.add("Barcode data: " + event.getBarcodeData());
+                    list.add("Character Set: " + event.getCharset());
+                    list.add("Code ID: " + event.getCodeId());
+                    list.add("AIM ID: " + event.getAimId());
+                    list.add("Timestamp: " + timeScanned);
+                    for (ArrayList<String> l : scannedData) {
+                        if (l.get(0).equals(list.get(0))) {
+                            return;
+                        }
+                    }
+                    if (soundEnabled) {
+                        MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound).start();
+                    }
+                    scannedData.add(list);
+                    scannedItems.add(0, "" + scannedData.size() + ".) " + event.getBarcodeData());
+                    final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AutomaticBarcodeActivity.this, android.R.layout.simple_list_item_1, scannedItems);
+                    barcodeList.setAdapter(dataAdapter);
+                    currCount = scannedItems.size();
+                    setCounter();
                 }
-                if (soundEnabled) {
-                    MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound).start();
-                }
-                scannedData.add(list);
-                scannedItems.add(0, "" + scannedData.size() + ".) " + event.getBarcodeData());
-                final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AutomaticBarcodeActivity.this, android.R.layout.simple_list_item_1, scannedItems);
-                barcodeList.setAdapter(dataAdapter);
-                currCount = scannedItems.size();
-                setCounter();
             }
         });
     }
@@ -196,7 +198,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                     barcodeReader.aim(true);
                     barcodeReader.light(true);
                     barcodeReader.decode(true);
-                    scanOn=true;
+                    scanOn = true;
                 } catch (ScannerUnavailableException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "Scanner unavailable", Toast.LENGTH_SHORT).show();
@@ -209,7 +211,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                 // Add these lines to stop scanning when the application is paused
                 try {
                     //This will stop scanning in continuous mode
-                    scanOn=false;
+                    scanOn = false;
                     barcodeReader.aim(false);
                     barcodeReader.light(false);
                     barcodeReader.decode(false);
@@ -324,7 +326,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
             } else {
                 counter.setVisibility(View.INVISIBLE);
             }
-            soundEnabled=intent.getBooleanExtra("sound", true);
+            soundEnabled = intent.getBooleanExtra("sound", true);
         }
     };
     IntentFilter filter = new IntentFilter();

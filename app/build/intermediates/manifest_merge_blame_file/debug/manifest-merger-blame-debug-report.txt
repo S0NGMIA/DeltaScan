@@ -46,11 +46,11 @@
 29        <activity
 29-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:9-25:20
 30            android:name="com.honeywell.barcodeexample.MainActivity"
-30-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:76-132
+30-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:77-133
 31            android:exported="true"
 31-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:19-42
-32            android:label="@string/app_name" >
-32-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:43-75
+32            android:label="DeltaOne Software" >
+32-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:14:43-76
 33            <intent-filter>
 33-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:15:13-19:29
 34                <action android:name="android.intent.action.MAIN" />
@@ -75,11 +75,11 @@
 44        <activity
 44-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:9-32:20
 45            android:name="com.honeywell.barcodeexample.AutomaticBarcodeActivity"
-45-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:75-143
+45-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:77-145
 46            android:exported="true"
 46-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:19-42
-47            android:label="@string/barcode" >
-47-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:43-74
+47            android:label="DeltaOne Software" >
+47-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:43-76
 48            <intent-filter>
 48-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:27:13-31:29
 49                <action android:name="android.intent.action.SCANSCREEN" />
@@ -94,11 +94,11 @@
 54        <activity
 54-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:9-39:20
 55            android:name="com.honeywell.barcodeexample.ClientBarcodeActivity"
-55-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:75-140
+55-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:77-142
 56            android:exported="true"
 56-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:19-42
-57            android:label="@string/barcode" >
-57-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:43-74
+57            android:label="DeltaOne Software" >
+57-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:33:43-76
 58            <intent-filter>
 58-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:34:13-38:29
 59                <action android:name="android.intent.action.CLIENTBARCODEACTIVITY" />
@@ -113,11 +113,11 @@
 64        <activity
 64-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:9-46:20
 65            android:name="com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity"
-65-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:75-150
+65-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:77-152
 66            android:exported="true"
 66-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:19-42
-67            android:label="@string/barcode" >
-67-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:43-74
+67            android:label="DeltaOne Software" >
+67-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:40:43-76
 68            <intent-filter>
 68-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:41:13-45:29
 69                <action android:name="android.intent.action.SCANNERSELECTBARCODEACTIVITY" />
@@ -132,11 +132,11 @@
 74        <activity
 74-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:9-53:20
 75            android:name="com.honeywell.barcodeexample.AnalysisActivity"
-75-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:76-136
+75-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:77-137
 76            android:exported="true"
 76-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:19-42
-77            android:label="@string/analysis" >
-77-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:43-75
+77            android:label="DeltaOne Software" >
+77-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:47:43-76
 78            <intent-filter>
 78-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:48:13-52:29
 79                <action android:name="android.intent.action.ANALYSIS" />
@@ -151,11 +151,11 @@
 84        <activity
 84-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:9-60:20
 85            android:name="com.honeywell.barcodeexample.SettingsActivity"
-85-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:76-136
+85-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:77-137
 86            android:exported="true"
 86-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:19-42
-87            android:label="@string/settings" >
-87-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:43-75
+87            android:label="DeltaOne Software" >
+87-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:54:43-76
 88            <intent-filter>
 88-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:55:13-59:29
 89                <action android:name="android.intent.action.SETTINGS" />
