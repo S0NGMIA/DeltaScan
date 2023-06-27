@@ -1392,6 +1392,8 @@ color bright_foreground_material_light
 color brown
 color button_material_dark
 color button_material_light
+color c1
+color c2
 color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
@@ -3291,6 +3293,8 @@ id info
 id invisible
 id inward
 id italic
+id item_subtitle
+id item_title
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -3710,6 +3714,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout list_item
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

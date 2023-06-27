@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:background="@color/c1"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,27 +13,29 @@
 
         <Button
             android:id="@+id/buttonScannerSelectBarcode"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:drawable/dialog_holo_light_frame"
-            android:backgroundTint="#6750A2"
+            android:backgroundTint="@color/c2"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:text="@string/btnScannerSelectBarcode"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/c1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.607" />
+            app:layout_constraintTop_toBottomOf="@+id/scan"
+            app:layout_constraintVertical_bias="0.149" />
 
         <Button
             android:id="@+id/paint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:drawable/dialog_holo_light_frame"
-            android:backgroundTint="#6750A2"
+            android:backgroundTint="@color/c2"
             android:text="@string/paint"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/c1"
             app:layout_constraintBottom_toTopOf="@+id/scan"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -46,9 +48,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:drawable/dialog_holo_light_frame"
-            android:backgroundTint="#6750A2"
+            android:backgroundTint="@color/c2"
             android:text="@string/scan"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/c1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -66,7 +68,7 @@
             android:shadowDy="10"
             android:shadowRadius="10"
             android:text="Delta Scan"
-            android:textColor="@color/brown"
+            android:textColor="@color/c2"
             android:textSize="32sp"
             app:layout_constraintBottom_toTopOf="@+id/paint"
             app:layout_constraintEnd_toEndOf="parent"

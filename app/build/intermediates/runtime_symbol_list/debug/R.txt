@@ -1391,6 +1391,8 @@ int color bright_foreground_material_light 0x7f050028
 int color brown 0x7f050029
 int color button_material_dark 0x7f05002a
 int color button_material_light 0x7f05002b
+int color c1 0x7f0502ed
+int color c2 0x7f0502ee
 int color cardview_dark_background 0x7f05002c
 int color cardview_light_background 0x7f05002d
 int color cardview_shadow_end_color 0x7f05002e
@@ -3290,6 +3292,8 @@ int id info 0x7f0800e7
 int id invisible 0x7f0800e8
 int id inward 0x7f0800e9
 int id italic 0x7f0800ea
+int id item_subtitle 0x7f08020b
+int id item_title 0x7f08020c
 int id item_touch_helper_previous_elevation 0x7f0800eb
 int id jumpToEnd 0x7f0800ec
 int id jumpToStart 0x7f0800ed
@@ -3709,6 +3713,7 @@ int layout design_navigation_menu 0x7f0b002b
 int layout design_navigation_menu_item 0x7f0b002c
 int layout design_text_input_end_icon 0x7f0b002d
 int layout design_text_input_start_icon 0x7f0b002e
+int layout list_item 0x7f0b006f
 int layout m3_alert_dialog 0x7f0b002f
 int layout m3_alert_dialog_actions 0x7f0b0030
 int layout m3_alert_dialog_title 0x7f0b0031

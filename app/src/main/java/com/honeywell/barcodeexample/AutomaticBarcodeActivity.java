@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.pm.ActivityInfo;
 
+import androidx.annotation.ContentView;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -58,6 +59,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     private Timer myTimer;
     private boolean isTimerOn;
     private boolean soundEnabled;
+    private boolean scanOn;
 
     //endregion
 
@@ -73,6 +75,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
         maxCount = -1;
         startTime = -1;
         isTimerOn = false;
+        scanOn=false;
         setContentView(R.layout.scan_screen);
         counter = (TextView) findViewById(R.id.counter);
         timer = (TextView) findViewById(R.id.timer);
@@ -151,8 +154,10 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (soundEnabled) {
-                    MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound).start();
+                if (timer.isShown() && !isTimerOn) {
+                    isTimerOn = true;
+                    startTime = (int) (System.currentTimeMillis() / 1000);
+                    startTimer();
                 }
                 // update UI to reflect the data
                 String timeScanned = "" + event.getTimestamp().substring(0, 10) + "   " + event.getTimestamp().substring(11, 16);
@@ -162,18 +167,20 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                 list.add("Code ID: " + event.getCodeId());
                 list.add("AIM ID: " + event.getAimId());
                 list.add("Timestamp: " + timeScanned);
-
+                for(ArrayList<String> l : scannedData){
+                    if(l.get(0).equals(list.get(0))){
+                        return;
+                    }
+                }
+                if (soundEnabled) {
+                    MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound).start();
+                }
                 scannedData.add(list);
                 scannedItems.add(0, "" + scannedData.size() + ".) " + event.getBarcodeData());
                 final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AutomaticBarcodeActivity.this, android.R.layout.simple_list_item_1, scannedItems);
                 barcodeList.setAdapter(dataAdapter);
                 currCount = scannedItems.size();
                 setCounter();
-                if (timer.isShown() && !isTimerOn) {
-                    isTimerOn = true;
-                    startTime = (int) (System.currentTimeMillis() / 1000);
-                    startTimer();
-                }
             }
         });
     }
@@ -189,6 +196,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                     barcodeReader.aim(true);
                     barcodeReader.light(true);
                     barcodeReader.decode(true);
+                    scanOn=true;
                 } catch (ScannerUnavailableException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "Scanner unavailable", Toast.LENGTH_SHORT).show();
@@ -201,6 +209,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                 // Add these lines to stop scanning when the application is paused
                 try {
                     //This will stop scanning in continuous mode
+                    scanOn=false;
                     barcodeReader.aim(false);
                     barcodeReader.light(false);
                     barcodeReader.decode(false);

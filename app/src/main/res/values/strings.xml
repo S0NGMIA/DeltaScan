@@ -6,7 +6,7 @@
     <string name="barcode">Barcode</string>
     <string name="btnAutomaticBarcode">Automatic Control</string>
     <string name="btnClientBarcode">Client Control</string>
-    <string name="btnScannerSelectBarcode">Scanner Selection Example</string>
+    <string name="btnScannerSelectBarcode">Scanner Selection</string>
     <string name="btnSwitchScanners">Switch Scanners</string>
     <string name="txtBarcodeTitle">Press the device\'s scan button to scan a barcode.</string>
     <string name="txtMainTitle">Click on below buttons for options.</string>
