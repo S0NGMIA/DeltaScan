@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.AutomaticBarcodeActivity">
+        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.ZebraScanner">
             <intent-filter>
                 <action android:name="android.intent.action.SCANSCREEN"/>
 

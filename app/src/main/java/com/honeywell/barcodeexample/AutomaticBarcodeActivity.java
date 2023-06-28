@@ -95,7 +95,7 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
             barcodeReader.addBarcodeListener(this);
 
             // set the trigger mode to client control
-            try {//TODO get value passed with activity and determine what trigger mode should be used.
+            try {
                 if (mode == 1) {
                     //This is the default scanner behavior. Pull the trigger to start scanning, release trigger to stop.
                     barcodeReader.setProperty(BarcodeReader.PROPERTY_TRIGGER_CONTROL_MODE, BarcodeReader.TRIGGER_CONTROL_MODE_AUTO_CONTROL);

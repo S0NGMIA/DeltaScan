@@ -74,8 +74,8 @@
 43        </activity>
 44        <activity
 44-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:9-32:20
-45            android:name="com.honeywell.barcodeexample.AutomaticBarcodeActivity"
-45-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:77-145
+45            android:name="com.honeywell.barcodeexample.ZebraScanner"
+45-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:77-133
 46            android:exported="true"
 46-->C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:26:19-42
 47            android:label="DeltaOne Software" >
