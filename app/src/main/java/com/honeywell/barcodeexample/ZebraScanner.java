@@ -27,7 +27,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ZebraScanner extends Activity {
-    //region var
+    //region Zebra variables
     // DataWedge Sample supporting DataWedge APIs up to DW 7.0
 
     private static final String EXTRA_PROFILENAME = "DWDataCapture1";
@@ -90,147 +90,12 @@ public class ZebraScanner extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Settings"));
-        //setContentView(R.layout.zebra_scan);
-        soundEnabled = true;
-        mode = getIntent().getIntExtra("mode", 0);
-        scannedData = new ArrayList<>();
-        scannedItems = new ArrayList<>();
-        currCount = 0;
-        maxCount = -1;
-        startTime = -1;
-        isTimerOn = false;
-        scanOn = false;
-        setContentView(R.layout.scan_screen);
-        counter = (TextView) findViewById(R.id.counter);
-        timer = (TextView) findViewById(R.id.timer);
-        barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
-        // Check selected decoders
-        // Use SET_CONFIG: http://techdocs.zebra.com/datawedge/latest/guide/api/setconfig/
-        /*final Button btnSetDecoders = (Button) findViewById(R.id.btnSetDecoders);
-        btnSetDecoders.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-
-                final CheckBox checkCode128 = (CheckBox) findViewById(R.id.chkCode128);
-                String Code128Value = setDecoder(checkCode128);
-                final CheckBox checkCode39 = (CheckBox) findViewById(R.id.chkCode39);
-                String Code39Value = setDecoder(checkCode39);
-
-                final CheckBox checkEAN13 = (CheckBox) findViewById(R.id.chkEAN13);
-                String EAN13Value = setDecoder(checkEAN13);
-
-                final CheckBox checkUPCA = (CheckBox) findViewById(R.id.chkUPCA);
-                String UPCAValue = setDecoder(checkUPCA);
-
-                // Main bundle properties
-                Bundle profileConfig = new Bundle();
-                profileConfig.putString("PROFILE_NAME", EXTRA_PROFILENAME);
-                profileConfig.putString("PROFILE_ENABLED", "true");
-                profileConfig.putString("CONFIG_MODE", "UPDATE");  // Update specified settings in profile
-
-                // PLUGIN_CONFIG bundle properties
-                Bundle barcodeConfig = new Bundle();
-                barcodeConfig.putString("PLUGIN_NAME", "BARCODE");
-                barcodeConfig.putString("RESET_CONFIG", "true");
-
-                // PARAM_LIST bundle properties
-                Bundle barcodeProps = new Bundle();
-                barcodeProps.putString("scanner_selection", "auto");
-                barcodeProps.putString("scanner_input_enabled", "true");
-                barcodeProps.putString("decoder_code128", Code128Value);
-                barcodeProps.putString("decoder_code39", Code39Value);
-                barcodeProps.putString("decoder_ean13", EAN13Value);
-                barcodeProps.putString("decoder_upca", UPCAValue);
-
-                // Bundle "barcodeProps" within bundle "barcodeConfig"
-                barcodeConfig.putBundle("PARAM_LIST", barcodeProps);
-                // Place "barcodeConfig" bundle within main "profileConfig" bundle
-                profileConfig.putBundle("PLUGIN_CONFIG", barcodeConfig);
-
-                // Create APP_LIST bundle to associate app with profile
-                Bundle appConfig = new Bundle();
-                appConfig.putString("PACKAGE_NAME", getPackageName());
-                appConfig.putStringArray("ACTIVITY_LIST", new String[]{"*"});
-                profileConfig.putParcelableArray("APP_LIST", new Bundle[]{appConfig});
-                sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_SET_CONFIG, profileConfig);
-                Toast.makeText(getApplicationContext(), "In profile " + EXTRA_PROFILENAME + " the selected decoders are being set: \nCode128=" + Code128Value + "\nCode39="
-                        + Code39Value + "\nEAN13=" + EAN13Value + "\nUPCA=" + UPCAValue, Toast.LENGTH_LONG).show();
-
-            }
-        });*/
-
-        // Register for status change notification
-        // Use REGISTER_FOR_NOTIFICATION: http://techdocs.zebra.com/datawedge/latest/guide/api/registerfornotification/
-        Bundle b = new Bundle();
-        b.putString(EXTRA_KEY_APPLICATION_NAME, getPackageName());
-        b.putString(EXTRA_KEY_NOTIFICATION_TYPE, "SCANNER_STATUS");     // register for changes in scanner status
-        sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_REGISTER_NOTIFICATION, b);
-
-        registerReceivers();
-
-        // Get DataWedge version
-        // Use GET_VERSION_INFO: http://techdocs.zebra.com/datawedge/latest/guide/api/getversioninfo/
-        sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_GET_VERSION_INFO, EXTRA_EMPTY);    // must be called after registering BroadcastReceiver
-        if(mode==0){
-            timer.setVisibility(View.VISIBLE);
-        }
+        setUp();
+        zebraSetup();
         ActivitySetting();
     }
 
-    // Create profile from UI onClick() event
-    public void CreateProfile (View view){
-        String profileName = EXTRA_PROFILENAME;
-
-        // Send DataWedge intent with extra to create profile
-        // Use CREATE_PROFILE: http://techdocs.zebra.com/datawedge/latest/guide/api/createprofile/
-        sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_CREATE_PROFILE, profileName);
-
-        // Configure created profile to apply to this app
-        Bundle profileConfig = new Bundle();
-        profileConfig.putString("PROFILE_NAME", EXTRA_PROFILENAME);
-        profileConfig.putString("PROFILE_ENABLED", "true");
-        profileConfig.putString("CONFIG_MODE", "CREATE_IF_NOT_EXIST");  // Create profile if it does not exist
-
-        // Configure barcode input plugin
-        Bundle barcodeConfig = new Bundle();
-        barcodeConfig.putString("PLUGIN_NAME", "BARCODE");
-        barcodeConfig.putString("RESET_CONFIG", "true"); //  This is the default
-        Bundle barcodeProps = new Bundle();
-        barcodeConfig.putBundle("PARAM_LIST", barcodeProps);
-        profileConfig.putBundle("PLUGIN_CONFIG", barcodeConfig);
-
-        // Associate profile with this app
-        Bundle appConfig = new Bundle();
-        appConfig.putString("PACKAGE_NAME", getPackageName());
-        appConfig.putStringArray("ACTIVITY_LIST", new String[]{"*"});
-        profileConfig.putParcelableArray("APP_LIST", new Bundle[]{appConfig});
-        profileConfig.remove("PLUGIN_CONFIG");
-
-        // Apply configs
-        // Use SET_CONFIG: http://techdocs.zebra.com/datawedge/latest/guide/api/setconfig/
-        sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_SET_CONFIG, profileConfig);
-
-        // Configure intent output for captured data to be sent to this app
-        Bundle intentConfig = new Bundle();
-        intentConfig.putString("PLUGIN_NAME", "INTENT");
-        intentConfig.putString("RESET_CONFIG", "true");
-        Bundle intentProps = new Bundle();
-        intentProps.putString("intent_output_enabled", "true");
-        intentProps.putString("intent_action", "com.zebra.datacapture1.ACTION");
-        intentProps.putString("intent_delivery", "2");
-        intentConfig.putBundle("PARAM_LIST", intentProps);
-        profileConfig.putBundle("PLUGIN_CONFIG", intentConfig);
-        sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_SET_CONFIG, profileConfig);
-
-        Toast.makeText(getApplicationContext(), "Created profile.  Check DataWedge app UI.", Toast.LENGTH_LONG).show();
-    }
-
-    // Toggle soft scan trigger from UI onClick() event
-    // Use SOFT_SCAN_TRIGGER: http://techdocs.zebra.com/datawedge/latest/guide/api/softscantrigger/
-    public void ToggleSoftScanTrigger (View view){
-        sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_SOFT_SCAN_TRIGGER, "TOGGLE_SCANNING");
-    }
-
+//region Zebra
     // Create filter for the broadcast intent
     private void registerReceivers() {
 
@@ -259,20 +124,7 @@ public class ZebraScanner extends Activity {
         this.sendBroadcast(i);
     }
 
-    public String setDecoder (CheckBox decoder)
-    {
-        boolean checkValue = decoder.isChecked();
-        String value = "false";
-        if (checkValue)
-        {
-            value = "true";
-            return value;
-        }
-        else
-            return value;
-    }
-
-//region Broadcast
+    //region Broadcast
     private BroadcastReceiver myBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -376,22 +228,36 @@ public class ZebraScanner extends Activity {
 //endregion
     private void displayScanResult(Intent initiatingIntent, String howDataReceived)
     {
-        MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound).start();
-        // store decoded data
-        String decodedData = initiatingIntent.getStringExtra(getResources().getString(R.string.datawedge_intent_key_data));
-        // store decoder type
+        if (maxCount <= 0 || currCount < maxCount) {
+            if (timer.isShown() && !isTimerOn) {
+                isTimerOn = true;
+                startTime = (int) (System.currentTimeMillis() / 1000);
+                startTimer();
+            }
+            // store decoded data
+            String decodedData = initiatingIntent.getStringExtra(getResources().getString(R.string.datawedge_intent_key_data));
+            // store decoder type
 
-        String decodedLabelType = initiatingIntent.getStringExtra(getResources().getString(R.string.datawedge_intent_key_label_type));
+            String decodedLabelType = initiatingIntent.getStringExtra(getResources().getString(R.string.datawedge_intent_key_label_type));
 
-        ArrayList<String> list = new ArrayList<String>();
-        list.add(decodedData);
-        list.add(decodedLabelType);
-        scannedData.add(list);
-        scannedItems.add(0, "" + scannedData.size() + ".) " + decodedData);
-        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ZebraScanner.this, android.R.layout.simple_list_item_1, scannedItems);
-        barcodeList.setAdapter(dataAdapter);
-        currCount = scannedItems.size();
-        setCounter();
+            ArrayList<String> list = new ArrayList<String>();
+            list.add(decodedData);
+            list.add(decodedLabelType);
+            for (ArrayList<String> l : scannedData) {
+                if (l.get(0).equals(list.get(0))) {
+                    return;
+                }
+            }
+            if (soundEnabled) {
+                MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound).start();
+            }
+            scannedData.add(list);
+            scannedItems.add(0, "" + scannedData.size() + ".) " + decodedData);
+            final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ZebraScanner.this, android.R.layout.simple_list_item_1, scannedItems);
+            barcodeList.setAdapter(dataAdapter);
+            currCount = scannedItems.size();
+            setCounter();
+        }
     }
 
     private void sendDataWedgeIntentWithExtra(String action, String extraKey, Bundle extras)
@@ -413,7 +279,10 @@ public class ZebraScanner extends Activity {
             dwIntent.putExtra(EXTRA_SEND_RESULT, "true");
         this.sendBroadcast(dwIntent);
     }
+    //endregion
 
+
+    //region overrides activity
     @Override
     protected void onResume()
     {
@@ -446,6 +315,11 @@ public class ZebraScanner extends Activity {
     {
         super.onStop();
     }
+    //endregion
+
+
+
+   /* //region other
     private void setCounter() {
         if (maxCount != 0) {
             counter.setText("COUNT: " + currCount + "/" + maxCount);
@@ -521,6 +395,102 @@ public class ZebraScanner extends Activity {
 
 
     }
+    //endregion*/
+
+    //region other
+   public void ActivitySetting() {
+       homeButton = (Button) findViewById(R.id.homeButton);
+       homeButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               onDestroy();
+               finish();
+           }
+       });
+
+       barcodeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               Intent intent = new Intent("android.intent.action.ANALYSIS");
+               intent.putStringArrayListExtra("data", scannedData.get(position));
+               startActivity(intent);
+           }
+       });
+
+       settingsButton = (Button) findViewById(R.id.settingsButton);
+       settingsButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               // get the intent action string from AndroidManifest.xml
+               Intent intent = new Intent("android.intent.action.SETTINGS");
+               intent.putExtra("frag", mode);
+               intent.putExtra("timer", timer.getVisibility() == View.VISIBLE);
+               intent.putExtra("countAmnt", maxCount);
+               intent.putExtra("sound", soundEnabled);
+               startActivity(intent);
+           }
+       });
+
+
+   }
+    private void setCounter() {
+        if (maxCount != 0) {
+            counter.setText("COUNT: " + currCount + "/" + maxCount);
+        } else {
+            counter.setText("COUNT: " + currCount);
+        }
+    }
+
+    private String getCurrTime() {
+        String time = "";
+        int sec = ((int) (System.currentTimeMillis() / 1000)) - startTime;
+        if (sec > 60) {
+            int min = sec / 60;
+            sec = sec % 60;
+            time += min + "min " + sec + "s";
+        } else {
+            time += sec + "s";
+        }
+        return time;
+    }
+
+    private void startTimer() {
+        myTimer = new Timer();
+        myTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                ZebraScanner.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (maxCount > 0 && currCount >= maxCount) {
+                            isTimerOn = false;
+                            myTimer.cancel();
+                            return;
+                        }
+                        timer.setText("TIME: " + getCurrTime());
+                    }
+                });
+            }
+        }, 1000, 1000);
+    }
+
+    private void setUp(){
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Settings"));
+        soundEnabled = true;
+        mode = getIntent().getIntExtra("mode", 0);
+        scannedData = new ArrayList<>();
+        scannedItems = new ArrayList<>();
+        currCount = 0;
+        maxCount = -1;
+        startTime = -1;
+        isTimerOn = false;
+        scanOn = false;
+        setContentView(R.layout.scan_screen);
+        counter = (TextView) findViewById(R.id.counter);
+        timer = (TextView) findViewById(R.id.timer);
+        barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
+    }
+    //endregion
 
     //region BroadcastReceiver from settings
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -544,6 +514,58 @@ public class ZebraScanner extends Activity {
         }
     };
     IntentFilter filter = new IntentFilter();
-
     //endregion
+
+    private void zebraSetup(){
+        // Main bundle properties
+        Bundle profileConfig = new Bundle();
+        profileConfig.putString("PROFILE_NAME", EXTRA_PROFILENAME);
+        profileConfig.putString("PROFILE_ENABLED", "true");
+        profileConfig.putString("CONFIG_MODE", "UPDATE");  // Update specified settings in profile
+
+        // PLUGIN_CONFIG bundle properties
+        Bundle barcodeConfig = new Bundle();
+        barcodeConfig.putString("PLUGIN_NAME", "BARCODE");
+        barcodeConfig.putString("RESET_CONFIG", "true");
+
+        // PARAM_LIST bundle properties
+        Bundle barcodeProps = new Bundle();
+        barcodeProps.putString("scanner_selection", "auto");
+        barcodeProps.putString("scanner_input_enabled", "true");
+
+
+        //TODO scanning properties
+        if(mode==0){
+            barcodeProps.putString("aim_type", "5");
+        }
+        else{
+            barcodeProps.putString("aim_type", "0");
+        }
+        barcodeProps.putInt("aim_timer", 0);
+        barcodeProps.putInt("beam_timer", 0);
+
+        // Bundle "barcodeProps" within bundle "barcodeConfig"
+        barcodeConfig.putBundle("PARAM_LIST", barcodeProps);
+        // Place "barcodeConfig" bundle within main "profileConfig" bundle
+        profileConfig.putBundle("PLUGIN_CONFIG", barcodeConfig);
+        // Create APP_LIST bundle to associate app with profile
+        Bundle appConfig = new Bundle();
+        appConfig.putString("PACKAGE_NAME", getPackageName());
+        appConfig.putStringArray("ACTIVITY_LIST", new String[]{"*"});
+        profileConfig.putParcelableArray("APP_LIST", new Bundle[]{appConfig});
+        sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_SET_CONFIG, profileConfig);
+
+
+        // Register for status change notification
+        // Use REGISTER_FOR_NOTIFICATION: http://techdocs.zebra.com/datawedge/latest/guide/api/registerfornotification/
+        Bundle b = new Bundle();
+        b.putString(EXTRA_KEY_APPLICATION_NAME, getPackageName());
+        b.putString(EXTRA_KEY_NOTIFICATION_TYPE, "SCANNER_STATUS");     // register for changes in scanner status
+        sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_REGISTER_NOTIFICATION, b);
+
+        registerReceivers();
+        // Get DataWedge version
+        // Use GET_VERSION_INFO: http://techdocs.zebra.com/datawedge/latest/guide/api/getversioninfo/
+        sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE, EXTRA_GET_VERSION_INFO, EXTRA_EMPTY);    // must be called after registering BroadcastReceiver
+    }
 }

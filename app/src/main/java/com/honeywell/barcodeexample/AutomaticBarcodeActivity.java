@@ -1,13 +1,5 @@
 package com.honeywell.barcodeexample;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Executors;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,13 +7,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
-import android.media.session.MediaSessionManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Parcelable;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,16 +16,22 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.pm.ActivityInfo;
 
-import androidx.annotation.ContentView;
-import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.google.type.Date;
-import com.honeywell.aidc.*;
+import com.honeywell.aidc.BarcodeFailureEvent;
+import com.honeywell.aidc.BarcodeReadEvent;
+import com.honeywell.aidc.BarcodeReader;
+import com.honeywell.aidc.ScannerNotClaimedException;
+import com.honeywell.aidc.ScannerUnavailableException;
+import com.honeywell.aidc.TriggerStateChangeEvent;
+import com.honeywell.aidc.UnsupportedPropertyException;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.BarcodeListener, BarcodeReader.TriggerListener {
 
@@ -60,95 +53,18 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     private boolean isTimerOn;
     private boolean soundEnabled;
     private boolean scanOn;
-
+    private int device; // 0=honeywell 1=zebra
     //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Settings"));
-        soundEnabled = true;
-        mode = getIntent().getIntExtra("mode", 0);
-        scannedData = new ArrayList<>();
-        scannedItems = new ArrayList<>();
-        currCount = 0;
-        maxCount = -1;
-        startTime = -1;
-        isTimerOn = false;
-        scanOn = false;
-        setContentView(R.layout.scan_screen);
-        counter = (TextView) findViewById(R.id.counter);
-        timer = (TextView) findViewById(R.id.timer);
-
-        if (Build.MODEL.startsWith("VM1A")) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-
-        // get bar code instance from MainActivity
-        barcodeReader = MainActivity.getBarcodeObject();
-
-        if (barcodeReader != null) {
-
-            // register bar code event listener
-            barcodeReader.addBarcodeListener(this);
-
-            // set the trigger mode to client control
-            try {
-                if (mode == 1) {
-                    //This is the default scanner behavior. Pull the trigger to start scanning, release trigger to stop.
-                    barcodeReader.setProperty(BarcodeReader.PROPERTY_TRIGGER_CONTROL_MODE, BarcodeReader.TRIGGER_CONTROL_MODE_AUTO_CONTROL);
-                } else {
-                    //Scanner trigger mode will behave exactly as we specify.
-                    barcodeReader.setProperty(BarcodeReader.PROPERTY_TRIGGER_CONTROL_MODE, BarcodeReader.TRIGGER_CONTROL_MODE_CLIENT_CONTROL);
-                }
-            } catch (UnsupportedPropertyException e) {
-                Toast.makeText(this, "Failed to apply properties", Toast.LENGTH_SHORT).show();
-            }
-            // register trigger state change listener
-            barcodeReader.addTriggerListener(this);
-
-            Map<String, Object> properties = new HashMap<String, Object>();
-            // Set Symbologies On/Off
-            properties.put(BarcodeReader.PROPERTY_CODE_128_ENABLED, true);
-            properties.put(BarcodeReader.PROPERTY_GS1_128_ENABLED, true);
-            properties.put(BarcodeReader.PROPERTY_QR_CODE_ENABLED, true);
-            properties.put(BarcodeReader.PROPERTY_CODE_39_ENABLED, true);
-            properties.put(BarcodeReader.PROPERTY_DATAMATRIX_ENABLED, true);
-            properties.put(BarcodeReader.PROPERTY_UPC_A_ENABLE, true);
-            properties.put(BarcodeReader.PROPERTY_EAN_13_ENABLED, false);
-            properties.put(BarcodeReader.PROPERTY_AZTEC_ENABLED, false);
-            properties.put(BarcodeReader.PROPERTY_CODABAR_ENABLED, false);
-            properties.put(BarcodeReader.PROPERTY_INTERLEAVED_25_ENABLED, false);
-            properties.put(BarcodeReader.PROPERTY_PDF_417_ENABLED, false);
-            // Set Max Code 39 barcode length
-            properties.put(BarcodeReader.PROPERTY_CODE_39_MAXIMUM_LENGTH, 10);
-            // Turn on center decoding
-            properties.put(BarcodeReader.PROPERTY_CENTER_DECODE, true);
-            // Enable bad read response
-            properties.put(BarcodeReader.PROPERTY_NOTIFICATION_BAD_READ_ENABLED, true);
-            // Sets time period for decoder timeout in any mode
-            properties.put(BarcodeReader.PROPERTY_DECODER_TIMEOUT, 400);
-            properties.put(BarcodeReader.PROPERTY_NOTIFICATION_GOOD_READ_ENABLED, false);
-            //Set the scanning mode to continuous if needed
-            //TODO if else statement here for continous scanning
-            if (mode == 0) {
-                properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_CONTINUOUS);
-            } else {
-                properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_ONESHOT);
-            }
-
-            // Apply the settings
-            barcodeReader.setProperties(properties);
-        }
-
-        // get initial list
-        barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
+        setUp();
+        HoneywellSetup();
         ActivitySetting();
     }
 
-    //region Barcode Methods
+    //region HoneyWell Barcode Methods
     @Override
     public void onBarcodeEvent(final BarcodeReadEvent event) {
         runOnUiThread(new Runnable() {
@@ -272,6 +188,32 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
     }
     //endregion
 
+    //region BroadcastReceiver from settings
+    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getBooleanExtra("time", false)) {
+                timer.setVisibility(View.VISIBLE);
+            } else {
+                timer.setVisibility(View.INVISIBLE);
+                startTime = -1;
+                timer.setText("TIME: " + 0 + "s");
+            }
+            maxCount = intent.getIntExtra("count", 0);
+            if (maxCount != -1) {
+                counter.setVisibility(View.VISIBLE);
+                setCounter();
+            } else {
+                counter.setVisibility(View.INVISIBLE);
+            }
+            soundEnabled = intent.getBooleanExtra("sound", true);
+        }
+    };
+    IntentFilter filter = new IntentFilter();
+
+    //endregion
+
+    //region other
     public void ActivitySetting() {
         homeButton = (Button) findViewById(R.id.homeButton);
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -307,31 +249,6 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
 
 
     }
-
-    //region BroadcastReceiver from settings
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getBooleanExtra("time", false)) {
-                timer.setVisibility(View.VISIBLE);
-            } else {
-                timer.setVisibility(View.INVISIBLE);
-                startTime = -1;
-                timer.setText("TIME: " + 0 + "s");
-            }
-            maxCount = intent.getIntExtra("count", 0);
-            if (maxCount != -1) {
-                counter.setVisibility(View.VISIBLE);
-                setCounter();
-            } else {
-                counter.setVisibility(View.INVISIBLE);
-            }
-            soundEnabled = intent.getBooleanExtra("sound", true);
-        }
-    };
-    IntentFilter filter = new IntentFilter();
-
-    //endregion
     private void setCounter() {
         if (maxCount != 0) {
             counter.setText("COUNT: " + currCount + "/" + maxCount);
@@ -371,5 +288,88 @@ public class AutomaticBarcodeActivity extends Activity implements BarcodeReader.
                 });
             }
         }, 1000, 1000);
+    }
+
+    private void setUp(){
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Settings"));
+        soundEnabled = true;
+        mode = getIntent().getIntExtra("mode", 0);
+        scannedData = new ArrayList<>();
+        scannedItems = new ArrayList<>();
+        currCount = 0;
+        maxCount = -1;
+        startTime = -1;
+        isTimerOn = false;
+        scanOn = false;
+        setContentView(R.layout.scan_screen);
+        counter = (TextView) findViewById(R.id.counter);
+        timer = (TextView) findViewById(R.id.timer);
+        barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
+    }
+    //endregion
+
+    private void HoneywellSetup(){
+        if (Build.MODEL.startsWith("VM1A")) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+
+        // get bar code instance from MainActivity
+        barcodeReader = MainActivity.getBarcodeObject();
+
+        if (barcodeReader != null) {
+
+            // register bar code event listener
+            barcodeReader.addBarcodeListener(this);
+
+            // set the trigger mode to client control
+            try {
+                if (mode == 1) {
+                    //This is the default scanner behavior. Pull the trigger to start scanning, release trigger to stop.
+                    barcodeReader.setProperty(BarcodeReader.PROPERTY_TRIGGER_CONTROL_MODE, BarcodeReader.TRIGGER_CONTROL_MODE_AUTO_CONTROL);
+                } else {
+                    //Scanner trigger mode will behave exactly as we specify.
+                    barcodeReader.setProperty(BarcodeReader.PROPERTY_TRIGGER_CONTROL_MODE, BarcodeReader.TRIGGER_CONTROL_MODE_CLIENT_CONTROL);
+                }
+            } catch (UnsupportedPropertyException e) {
+                Toast.makeText(this, "Failed to apply properties", Toast.LENGTH_SHORT).show();
+            }
+            // register trigger state change listener
+            barcodeReader.addTriggerListener(this);
+
+            Map<String, Object> properties = new HashMap<String, Object>();
+            // Set Symbologies On/Off
+            properties.put(BarcodeReader.PROPERTY_CODE_128_ENABLED, true);
+            properties.put(BarcodeReader.PROPERTY_GS1_128_ENABLED, true);
+            properties.put(BarcodeReader.PROPERTY_QR_CODE_ENABLED, true);
+            properties.put(BarcodeReader.PROPERTY_CODE_39_ENABLED, true);
+            properties.put(BarcodeReader.PROPERTY_DATAMATRIX_ENABLED, true);
+            properties.put(BarcodeReader.PROPERTY_UPC_A_ENABLE, true);
+            properties.put(BarcodeReader.PROPERTY_EAN_13_ENABLED, false);
+            properties.put(BarcodeReader.PROPERTY_AZTEC_ENABLED, false);
+            properties.put(BarcodeReader.PROPERTY_CODABAR_ENABLED, false);
+            properties.put(BarcodeReader.PROPERTY_INTERLEAVED_25_ENABLED, false);
+            properties.put(BarcodeReader.PROPERTY_PDF_417_ENABLED, false);
+            // Set Max Code 39 barcode length
+            properties.put(BarcodeReader.PROPERTY_CODE_39_MAXIMUM_LENGTH, 10);
+            // Turn on center decoding
+            properties.put(BarcodeReader.PROPERTY_CENTER_DECODE, true);
+            // Enable bad read response
+            properties.put(BarcodeReader.PROPERTY_NOTIFICATION_BAD_READ_ENABLED, true);
+            // Sets time period for decoder timeout in any mode
+            properties.put(BarcodeReader.PROPERTY_DECODER_TIMEOUT, 400);
+            properties.put(BarcodeReader.PROPERTY_NOTIFICATION_GOOD_READ_ENABLED, false);
+            //Set the scanning mode to continuous if needed
+            //TODO if else statement here for continous scanning
+            if (mode == 0) {
+                properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_CONTINUOUS);
+            } else {
+                properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_ONESHOT);
+            }
+
+            // Apply the settings
+            barcodeReader.setProperties(properties);
+        }
     }
 }
