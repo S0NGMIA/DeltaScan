@@ -31,6 +31,7 @@
     <string name="analysis">ANALYSIS</string>
     <string name="sound">SOUND</string>
     <string name="timer">TIMER</string>
+    <string name="clear">CLEAR</string>
     <string name="numScan"># TO SCAN</string>
     <string name="appTitle">Delta Scan</string>
     <string name="time">TIME: 00:00</string>

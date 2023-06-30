@@ -20,7 +20,9 @@ import android.widget.Toast;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -89,6 +91,7 @@ public class ZebraScanActivity extends Activity {
     private MediaPlayer sonicDeathSound;
     private MediaPlayer sonicSound;
     private MediaPlayer sonicSound2; //same sound as sonicSound
+    private MediaPlayer sonicSound3; //same sound as sonicSound
     //endregion
 
     @Override
@@ -120,12 +123,16 @@ public class ZebraScanActivity extends Activity {
 
 
         if (mode == 0) {
-            barcodeProps.putString("aim_type", "5");
+            barcodeProps.putInt("aim_type", 5);
+            barcodeProps.putInt("picklist", 0);
         } else {
-            barcodeProps.putString("aim_type", "0");
+            barcodeProps.putInt("aim_type", 0);
+            barcodeProps.putInt("picklist", 1);
         }
         barcodeProps.putInt("aim_timer", 0);
         barcodeProps.putInt("beam_timer", 0);
+        barcodeProps.putString("aim_mode", "on");
+        barcodeProps.putInt("scanning_mode", 1);
 
         // Bundle "barcodeProps" within bundle "barcodeConfig"
         barcodeConfig.putBundle("PARAM_LIST", barcodeProps);
@@ -268,6 +275,7 @@ public class ZebraScanActivity extends Activity {
     };
 
     //endregion
+
     private void displayScanResult(Intent initiatingIntent, String howDataReceived) {
         if (maxCount <= 0 || currCount < maxCount) {
             if (timer.isShown() && !isTimerOn) {
@@ -297,6 +305,8 @@ public class ZebraScanActivity extends Activity {
                     sonicSound.start();
                 } else if (!sonicSound2.isPlaying()) {
                     sonicSound2.start();
+                }else if (!sonicSound3.isPlaying()) {
+                    sonicSound3.start();
                 }
             }
             scannedData.add(0, list);
@@ -509,6 +519,7 @@ public class ZebraScanActivity extends Activity {
         barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
         sonicSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicSound2 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
+        sonicSound3 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicDeathSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound);
     }
     //endregion

@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/dialog_holo_light_frame"
             android:backgroundTint="@color/c2"
-            android:text="Clear"
+            android:text="@string/clear"
             android:textColor="@color/c1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -99,10 +99,10 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintHorizontal_bias="0.073"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/timer"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.009" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

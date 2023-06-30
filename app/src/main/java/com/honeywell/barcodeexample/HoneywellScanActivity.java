@@ -56,6 +56,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     private MediaPlayer sonicDeathSound;
     private MediaPlayer sonicSound;
     private MediaPlayer sonicSound2; //same sound as sonicSound
+    private MediaPlayer sonicSound3; //same sound as sonicSound
     //endregion
 
     @Override
@@ -120,14 +121,14 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
             // Sets time period for decoder timeout in any mode
             properties.put(BarcodeReader.PROPERTY_DECODER_TIMEOUT, 400);
             properties.put(BarcodeReader.PROPERTY_NOTIFICATION_GOOD_READ_ENABLED, false);
-            //Set the scanning mode to continuous if needed
-            //TODO if else statement here for continous scanning
+            //Paint vs normal scan mode
             if (mode == 0) {
                 properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_CONTINUOUS);
+                properties.put(BarcodeReader.PROPERTY_CENTER_DECODE, false);
             } else {
                 properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_ONESHOT);
+                properties.put(BarcodeReader.PROPERTY_CENTER_DECODE, true);
             }
-
             // Apply the settings
             barcodeReader.setProperties(properties);
         }
@@ -166,6 +167,8 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                             sonicSound.start();
                         } else if (!sonicSound2.isPlaying()) {
                             sonicSound2.start();
+                        }else if (!sonicSound3.isPlaying()) {
+                            sonicSound3.start();
                         }
                     }
                     scannedData.add(0, list);
@@ -425,6 +428,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
         barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
         sonicSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicSound2 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
+        sonicSound3 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicDeathSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound);
     }
     //endregion

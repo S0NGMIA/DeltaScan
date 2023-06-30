@@ -264,7 +264,7 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.HoneywellHomeActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:85:9-94:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:88:13-46
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:88:13-53
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:87:13-36
 	android:name
@@ -282,7 +282,7 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.ZebraHomeActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:95:9-104:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:98:13-46
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:98:13-53
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:97:13-36
 	android:name
@@ -296,7 +296,7 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:106:9-115:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:109:13-46
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:109:13-63
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:108:13-36
 	android:name
@@ -310,7 +310,7 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.HoneywellScanActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:116:9-125:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:119:13-46
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:119:13-60
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:118:13-36
 	android:name
@@ -324,7 +324,7 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.ZebraScanActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:126:9-135:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:129:13-46
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:129:13-60
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:128:13-36
 	android:name
@@ -338,7 +338,7 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.AnalysisActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:137:9-146:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:140:13-46
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:140:13-57
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:139:13-36
 	android:name
@@ -352,7 +352,7 @@ ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml
 activity#com.honeywell.barcodeexample.SettingsActivity
 ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:147:9-156:20
 	android:label
-		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:150:13-46
+		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:150:13-57
 	android:exported
 		ADDED from C:\Company\Projects\BarcodeExampleV2\app\src\main\AndroidManifest.xml:149:13-36
 	android:name

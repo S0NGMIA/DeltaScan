@@ -3836,6 +3836,7 @@ string btnSwitchScanners
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
+string clear
 string clear_text_end_icon_content_description
 string count
 string datawedge_intent_key_data

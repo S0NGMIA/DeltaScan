@@ -85,7 +85,7 @@
         <activity
             android:name="com.honeywell.barcodeexample.HoneywellHomeActivity"
             android:exported="true"
-            android:label="DeltaOne Software">
+            android:label="DeltaOne Software ~ Home">
             <intent-filter>
                 <action android:name="android.intent.action.HONEYHOME" />
 
@@ -95,7 +95,7 @@
         <activity
             android:name="com.honeywell.barcodeexample.ZebraHomeActivity"
             android:exported="true"
-            android:label="DeltaOne Software">
+            android:label="DeltaOne Software ~ Home">
             <intent-filter>
                 <action android:name="android.intent.action.ZEBRAHOME" />
 
@@ -106,7 +106,7 @@
         <activity
             android:name="com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity"
             android:exported="true"
-            android:label="DeltaOne Software">
+            android:label="DeltaOne Software ~ Scanner Select">
             <intent-filter>
                 <action android:name="android.intent.action.SCANNERSELECTBARCODEACTIVITY" />
 
@@ -116,7 +116,7 @@
         <activity
             android:name="com.honeywell.barcodeexample.HoneywellScanActivity"
             android:exported="true"
-            android:label="DeltaOne Software">
+            android:label="DeltaOne Software ~ Scan Screen">
             <intent-filter>
                 <action android:name="android.intent.action.HONEYSCAN" />
 
@@ -126,7 +126,7 @@
         <activity
             android:name="com.honeywell.barcodeexample.ZebraScanActivity"
             android:exported="true"
-            android:label="DeltaOne Software">
+            android:label="DeltaOne Software ~ Scan Screen">
             <intent-filter>
                 <action android:name="android.intent.action.ZEBRASCAN" />
 
@@ -137,7 +137,7 @@
         <activity
             android:name="com.honeywell.barcodeexample.AnalysisActivity"
             android:exported="true"
-            android:label="DeltaOne Software">
+            android:label="DeltaOne Software ~ Analysis">
             <intent-filter>
                 <action android:name="android.intent.action.ANALYSIS" />
 
@@ -147,7 +147,7 @@
         <activity
             android:name="com.honeywell.barcodeexample.SettingsActivity"
             android:exported="true"
-            android:label="DeltaOne Software">
+            android:label="DeltaOne Software ~ Settings">
             <intent-filter>
                 <action android:name="android.intent.action.SETTINGS" />
 
