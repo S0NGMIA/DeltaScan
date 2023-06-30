@@ -2,24 +2,17 @@ package com.honeywell.barcodeexample;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
 public class SettingsActivity extends Activity {
-    //region Variables
+    //region
     private Button backButton;
     private CheckBox timer;
     private CheckBox counter;

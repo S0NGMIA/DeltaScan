@@ -1,72 +1,158 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="197000073" android:versionName="1.97.00.0073">
+    android:versionCode="197000073"
+    android:versionName="1.97.00.0073">
 
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="31"/>
-<!--    <uses-permission android:name="com.symbol.emdk.permission.EMDK" />-->
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="31" />
+    <!--    <uses-permission android:name="com.symbol.emdk.permission.EMDK" />-->
     <application
         android:allowBackup="true"
-        android:name=".Global"
         android:icon="@mipmap/d1sw_logo_foreground"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-<!--        <uses-library android:name="com.symbol.emdk" />-->
-        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+        <!--        <uses-library android:name="com.symbol.emdk" />-->
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.HOME"/>
+        <!--        <activity-->
+        <!--            android:name="com.honeywell.barcodeexample.MainActivity"-->
+        <!--            android:exported="true"-->
+        <!--            android:label="DeltaOne Software">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.DEFAULT"/>
+        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--            </intent-filter>-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.HOME" />-->
+
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+        <!--        <activity-->
+        <!--            android:name="com.honeywell.barcodeexample.ScannerActivity"-->
+        <!--            android:exported="true"-->
+        <!--            android:label="DeltaOne Software">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.SCANSCREEN" />-->
+
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+        <!--        <activity-->
+        <!--            android:name="com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity"-->
+        <!--            android:exported="true"-->
+        <!--            android:label="DeltaOne Software">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.SCANNERSELECTBARCODEACTIVITY" />-->
+
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+        <!--        <activity-->
+        <!--            android:name="com.honeywell.barcodeexample.AnalysisActivity"-->
+        <!--            android:exported="true"-->
+        <!--            android:label="DeltaOne Software">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.ANALYSIS" />-->
+
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+        <!--        <activity-->
+        <!--            android:name="com.honeywell.barcodeexample.SettingsActivity"-->
+        <!--            android:exported="true"-->
+        <!--            android:label="DeltaOne Software">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.SETTINGS" />-->
+
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+
+        <activity
+            android:name="com.honeywell.barcodeexample.StartActivity"
+            android:exported="true"
+            android:label="DeltaOne Software">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.ScannerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SCANSCREEN"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
+        <activity
+            android:name="com.honeywell.barcodeexample.HoneywellHomeActivity"
+            android:exported="true"
+            android:label="DeltaOne Software">
+            <intent-filter>
+                <action android:name="android.intent.action.HONEYHOME" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.ClientBarcodeActivity">
+        <activity
+            android:name="com.honeywell.barcodeexample.ZebraHomeActivity"
+            android:exported="true"
+            android:label="DeltaOne Software">
             <intent-filter>
-                <action android:name="android.intent.action.CLIENTBARCODEACTIVITY"/>
+                <action android:name="android.intent.action.ZEBRAHOME" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SCANNERSELECTBARCODEACTIVITY"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
+        <activity
+            android:name="com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity"
+            android:exported="true"
+            android:label="DeltaOne Software">
+            <intent-filter>
+                <action android:name="android.intent.action.SCANNERSELECTBARCODEACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.AnalysisActivity">
+        <activity
+            android:name="com.honeywell.barcodeexample.HoneywellScanActivity"
+            android:exported="true"
+            android:label="DeltaOne Software">
             <intent-filter>
-                <action android:name="android.intent.action.ANALYSIS"/>
+                <action android:name="android.intent.action.HONEYSCAN" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:exported="true" android:label="DeltaOne Software" android:name="com.honeywell.barcodeexample.SettingsActivity">
+        <activity
+            android:name="com.honeywell.barcodeexample.ZebraScanActivity"
+            android:exported="true"
+            android:label="DeltaOne Software">
             <intent-filter>
-                <action android:name="android.intent.action.SETTINGS"/>
+                <action android:name="android.intent.action.ZEBRASCAN" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <receiver
-            android:name="Global"
-            android:exported="true">
+
+        <activity
+            android:name="com.honeywell.barcodeexample.AnalysisActivity"
+            android:exported="true"
+            android:label="DeltaOne Software">
             <intent-filter>
-                <action
-                    android:name="android.intent.action.SETTINGSSET">
-                </action>
+                <action android:name="android.intent.action.ANALYSIS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </receiver>
+        </activity>
+        <activity
+            android:name="com.honeywell.barcodeexample.SettingsActivity"
+            android:exported="true"
+            android:label="DeltaOne Software">
+            <intent-filter>
+                <action android:name="android.intent.action.SETTINGS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

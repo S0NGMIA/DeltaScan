@@ -1,34 +1,46 @@
 [
     {
-        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/scanner_select_dialog.xml",
-        "source": "com.honeywell.barcodeexample.app-main-7:/layout/scanner_select_dialog.xml"
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-mergeDebugResources-4:\\layout\\list_item.xml",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-7:\\layout\\list_item.xml"
     },
     {
-        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/zebra_scan.xml",
-        "source": "com.honeywell.barcodeexample.app-main-7:/layout/zebra_scan.xml"
+        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/analysis_screen.xml",
+        "source": "com.honeywell.barcodeexample.app-main-7:/layout/analysis_screen.xml"
     },
     {
-        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/settings_screen.xml",
-        "source": "com.honeywell.barcodeexample.app-main-7:/layout/settings_screen.xml"
+        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/home_screen.xml",
+        "source": "com.honeywell.barcodeexample.app-main-7:/layout/home_screen.xml"
     },
     {
-        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/activity_selection_barcode.xml",
-        "source": "com.honeywell.barcodeexample.app-main-7:/layout/activity_selection_barcode.xml"
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-mergeDebugResources-4:\\layout\\zebra_scan.xml",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-7:\\layout\\zebra_scan.xml"
     },
     {
-        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/activity_main.xml",
-        "source": "com.honeywell.barcodeexample.app-main-7:/layout/activity_main.xml"
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-mergeDebugResources-4:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-7:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/list_item.xml",
-        "source": "com.honeywell.barcodeexample.app-main-7:/layout/list_item.xml"
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-mergeDebugResources-4:\\layout\\incompatible_device.xml",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-7:\\layout\\incompatible_device.xml"
     },
     {
-        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/activity_barcode.xml",
-        "source": "com.honeywell.barcodeexample.app-main-7:/layout/activity_barcode.xml"
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-mergeDebugResources-4:\\layout\\scan_screen.xml",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-7:\\layout\\scan_screen.xml"
     },
     {
-        "merged": "com.honeywell.barcodeexample.app-mergeDebugResources-4:/layout/scan_screen.xml",
-        "source": "com.honeywell.barcodeexample.app-main-7:/layout/scan_screen.xml"
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-mergeDebugResources-4:\\layout\\settings_screen.xml",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-7:\\layout\\settings_screen.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-mergeDebugResources-4:\\layout\\scanner_select_dialog.xml",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-7:\\layout\\scanner_select_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-mergeDebugResources-4:\\layout\\activity_selection_barcode.xml",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-7:\\layout\\activity_selection_barcode.xml"
+    },
+    {
+        "merged": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-mergeDebugResources-4:\\layout\\activity_barcode.xml",
+        "source": "C:\\Users\\d1intern.D1\\.gradle\\daemon\\8.0\\com.honeywell.barcodeexample.app-main-7:\\layout\\activity_barcode.xml"
     }
 ]

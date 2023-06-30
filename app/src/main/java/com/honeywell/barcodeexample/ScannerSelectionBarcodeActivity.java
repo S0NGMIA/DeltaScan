@@ -32,9 +32,8 @@ import com.honeywell.aidc.ScannerUnavailableException;
 import com.honeywell.aidc.InvalidScannerNameException;
 
 
-public class ScannerSelectionBarcodeActivity extends Activity implements
-        BarcodeReader.BarcodeListener, BarcodeReader.TriggerListener {
-
+public class ScannerSelectionBarcodeActivity extends Activity implements BarcodeReader.BarcodeListener, BarcodeReader.TriggerListener {
+//region
     private com.honeywell.aidc.AidcManager mAidcManager;
     private com.honeywell.aidc.BarcodeReader mBarcodeReader;
     private final Context mContext = this;
@@ -42,7 +41,7 @@ public class ScannerSelectionBarcodeActivity extends Activity implements
     private Button mSwitchScannersButton;
     private ListView barcodeList;
     private boolean mResume = false;
-
+//endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

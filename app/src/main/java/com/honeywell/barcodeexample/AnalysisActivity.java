@@ -1,7 +1,6 @@
 package com.honeywell.barcodeexample;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -9,7 +8,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AnalysisActivity extends Activity {
     private Button backButton;
@@ -17,7 +15,7 @@ public class AnalysisActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_barcode);
+        setContentView(R.layout.analysis_screen);
         final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AnalysisActivity.this, android.R.layout.simple_list_item_1, getIntent().getStringArrayListExtra("data"));
         ListView barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
         barcodeList.setAdapter(dataAdapter);
