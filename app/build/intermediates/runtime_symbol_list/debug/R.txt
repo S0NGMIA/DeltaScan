@@ -3178,6 +3178,7 @@ int id checkbox 0x7f080078
 int id checked 0x7f080079
 int id chronometer 0x7f08007e
 int id circle_center 0x7f08007f
+int id clear 0x7f08021e
 int id clear_text 0x7f080080
 int id clip_horizontal 0x7f080081
 int id clip_vertical 0x7f080082

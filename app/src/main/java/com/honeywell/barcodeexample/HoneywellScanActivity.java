@@ -41,6 +41,8 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     private TextView timer;
     private Button homeButton;
     private Button settingsButton;
+
+    private Button clearButton;
     private ArrayList<ArrayList<String>> scannedData;
     private ArrayList<String> scannedItems;
     private Timer myTimer;
@@ -51,6 +53,9 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     private int currTime;
     private boolean isTimerOn;
     private boolean soundEnabled;
+    private MediaPlayer sonicDeathSound;
+    private MediaPlayer sonicSound;
+    private MediaPlayer sonicSound2; //same sound as sonicSound
     //endregion
 
     @Override
@@ -150,24 +155,27 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                     list.add("Timestamp: " + timeScanned);
                     for (ArrayList<String> l : scannedData) {
                         if (l.get(0).equals(list.get(0))) {
-                            if (soundEnabled) {
-                                MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound).start();
+                            if (soundEnabled && !sonicDeathSound.isPlaying()) {
+                                sonicDeathSound.start();
                             }
                             return;
                         }
                     }
                     if (soundEnabled) {
-                        MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound).start();
+                        if (!sonicSound.isPlaying()) {
+                            sonicSound.start();
+                        } else if (!sonicSound2.isPlaying()) {
+                            sonicSound2.start();
+                        }
                     }
-                    scannedData.add(list);
+                    scannedData.add(0, list);
                     scannedItems.add(0, "" + scannedData.size() + ".) " + event.getBarcodeData());
                     final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HoneywellScanActivity.this, android.R.layout.simple_list_item_1, scannedItems);
                     barcodeList.setAdapter(dataAdapter);
                     currCount = scannedItems.size();
                     setCounter();
-                }
-                else if (soundEnabled) {
-                    MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound).start();
+                } else if (soundEnabled && !sonicDeathSound.isPlaying()) {
+                    sonicDeathSound.start();
                 }
             }
         });
@@ -327,7 +335,24 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
             }
         });
 
-
+        clearButton = (Button) findViewById(R.id.clear);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scannedItems.clear();
+                scannedData.clear();
+                currCount = 0;
+                isTimerOn = false;
+                if (myTimer != null) {
+                    myTimer.cancel();
+                }
+                currTime = 0;
+                timer.setText(R.string.time);
+                final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HoneywellScanActivity.this, android.R.layout.simple_list_item_1, scannedItems);
+                barcodeList.setAdapter(dataAdapter);
+                setCounter();
+            }
+        });
     }
 
     private void setCounter() {
@@ -342,12 +367,22 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
         String time = "";
         int sec = initalTime + ((int) (System.currentTimeMillis() / 1000)) - startTime;
         currTime = sec;
-        if (sec > 60) {
+        if (sec >= 60) {
             int min = sec / 60;
-            sec = sec % 60;
-            time += min + "min " + sec + "s";
+            sec %= 60;
+            min %= 60;
+            if (min < 10) {
+                time += "0" + min + ":";
+            } else {
+                time += min + ":";
+            }
         } else {
-            time += sec + "s";
+            time += "00:";
+        }
+        if (sec < 10) {
+            time += "0" + sec;
+        } else {
+            time += sec;
         }
         return time;
     }
@@ -388,15 +423,9 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
         counter = (TextView) findViewById(R.id.counter);
         timer = (TextView) findViewById(R.id.timer);
         barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
-    }
-
-    private void playSound(int type){
-        if(type==0){
-            MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound).start();
-        }
-        else{
-            MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound).start();
-        }
+        sonicSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
+        sonicSound2 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
+        sonicDeathSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound);
     }
     //endregion
 }

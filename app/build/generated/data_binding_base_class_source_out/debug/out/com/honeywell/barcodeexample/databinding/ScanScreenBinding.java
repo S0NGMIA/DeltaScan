@@ -22,6 +22,9 @@ public final class ScanScreenBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
+  public final Button clear;
+
+  @NonNull
   public final TextView counter;
 
   @NonNull
@@ -36,10 +39,11 @@ public final class ScanScreenBinding implements ViewBinding {
   @NonNull
   public final TextView timer;
 
-  private ScanScreenBinding(@NonNull FrameLayout rootView, @NonNull TextView counter,
-      @NonNull Button homeButton, @NonNull ListView listViewBarcodeData,
+  private ScanScreenBinding(@NonNull FrameLayout rootView, @NonNull Button clear,
+      @NonNull TextView counter, @NonNull Button homeButton, @NonNull ListView listViewBarcodeData,
       @NonNull Button settingsButton, @NonNull TextView timer) {
     this.rootView = rootView;
+    this.clear = clear;
     this.counter = counter;
     this.homeButton = homeButton;
     this.listViewBarcodeData = listViewBarcodeData;
@@ -74,6 +78,12 @@ public final class ScanScreenBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.clear;
+      Button clear = ViewBindings.findChildViewById(rootView, id);
+      if (clear == null) {
+        break missingId;
+      }
+
       id = R.id.counter;
       TextView counter = ViewBindings.findChildViewById(rootView, id);
       if (counter == null) {
@@ -104,8 +114,8 @@ public final class ScanScreenBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ScanScreenBinding((FrameLayout) rootView, counter, homeButton, listViewBarcodeData,
-          settingsButton, timer);
+      return new ScanScreenBinding((FrameLayout) rootView, clear, counter, homeButton,
+          listViewBarcodeData, settingsButton, timer);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

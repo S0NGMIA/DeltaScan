@@ -25,7 +25,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ZebraScanActivity extends Activity{
+public class ZebraScanActivity extends Activity {
 
     //region Zebra
     // DataWedge Sample supporting DataWedge APIs up to DW 7.0
@@ -71,12 +71,11 @@ public class ZebraScanActivity extends Activity{
     //region
     private ListView barcodeList;
     private ArrayAdapter<String> dataAdapter;
-
-
     private TextView counter;
     private TextView timer;
     private Button homeButton;
     private Button settingsButton;
+    private Button clearButton;
     private Timer myTimer;
     private ArrayList<ArrayList<String>> scannedData;
     private ArrayList<String> scannedItems;
@@ -87,7 +86,9 @@ public class ZebraScanActivity extends Activity{
     private int currTime;
     private boolean isTimerOn;
     private boolean soundEnabled;
-
+    private MediaPlayer sonicDeathSound;
+    private MediaPlayer sonicSound;
+    private MediaPlayer sonicSound2; //same sound as sonicSound
     //endregion
 
     @Override
@@ -118,7 +119,6 @@ public class ZebraScanActivity extends Activity{
         barcodeProps.putString("scanner_input_enabled", "true");
 
 
-        //TODO scanning properties
         if (mode == 0) {
             barcodeProps.putString("aim_type", "5");
         } else {
@@ -286,24 +286,27 @@ public class ZebraScanActivity extends Activity{
             list.add(decodedLabelType);
             for (ArrayList<String> l : scannedData) {
                 if (l.get(0).equals(list.get(0))) {
-                    if (soundEnabled) {
-                        MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound).start();
+                    if (soundEnabled && !sonicDeathSound.isPlaying()) {
+                        sonicDeathSound.start();
                     }
                     return;
                 }
             }
             if (soundEnabled) {
-                MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound).start();
+                if (!sonicSound.isPlaying()) {
+                    sonicSound.start();
+                } else if (!sonicSound2.isPlaying()) {
+                    sonicSound2.start();
+                }
             }
-            scannedData.add(list);
+            scannedData.add(0, list);
             scannedItems.add(0, "" + scannedData.size() + ".) " + decodedData);
             final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ZebraScanActivity.this, android.R.layout.simple_list_item_1, scannedItems);
             barcodeList.setAdapter(dataAdapter);
             currCount = scannedItems.size();
             setCounter();
-        }
-        else if (soundEnabled) {
-            MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound).start();
+        } else if (soundEnabled && !sonicDeathSound.isPlaying()) {
+            sonicDeathSound.start();
         }
     }
 
@@ -416,7 +419,24 @@ public class ZebraScanActivity extends Activity{
             }
         });
 
-
+        clearButton = (Button) findViewById(R.id.clear);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scannedItems.clear();
+                scannedData.clear();
+                currCount = 0;
+                isTimerOn = false;
+                if (myTimer != null) {
+                    myTimer.cancel();
+                }
+                currTime = 0;
+                timer.setText(R.string.time);
+                final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ZebraScanActivity.this, android.R.layout.simple_list_item_1, scannedItems);
+                barcodeList.setAdapter(dataAdapter);
+                setCounter();
+            }
+        });
     }
 
     private void setCounter() {
@@ -431,12 +451,22 @@ public class ZebraScanActivity extends Activity{
         String time = "";
         int sec = initalTime + ((int) (System.currentTimeMillis() / 1000)) - startTime;
         currTime = sec;
-        if (sec > 60) {
+        if (sec >= 60) {
             int min = sec / 60;
-            sec = sec % 60;
-            time += min + "min " + sec + "s";
+            sec %= 60;
+            min %= 60;
+            if (min < 10) {
+                time += "0" + min + ":";
+            } else {
+                time += min + ":";
+            }
         } else {
-            time += sec + "s";
+            time += "00:";
+        }
+        if (sec < 10) {
+            time += "0" + sec;
+        } else {
+            time += sec;
         }
         return time;
     }
@@ -477,6 +507,9 @@ public class ZebraScanActivity extends Activity{
         counter = (TextView) findViewById(R.id.counter);
         timer = (TextView) findViewById(R.id.timer);
         barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
+        sonicSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
+        sonicSound2 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
+        sonicDeathSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound);
     }
     //endregion
 }
