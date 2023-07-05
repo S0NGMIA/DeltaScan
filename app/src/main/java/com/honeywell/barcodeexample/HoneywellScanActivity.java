@@ -173,7 +173,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                     }
                     scannedData.add(0, list);
                     scannedItems.add(0, "" + scannedData.size() + ".) " + event.getBarcodeData());
-                    final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HoneywellScanActivity.this, android.R.layout.simple_list_item_1, scannedItems);
+                    final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HoneywellScanActivity.this, R.layout.list_layout, scannedItems);
                     barcodeList.setAdapter(dataAdapter);
                     currCount = scannedItems.size();
                     setCounter();

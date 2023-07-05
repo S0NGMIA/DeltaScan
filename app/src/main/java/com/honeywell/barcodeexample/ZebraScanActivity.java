@@ -22,6 +22,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Timer;
@@ -123,7 +124,7 @@ public class ZebraScanActivity extends Activity {
 
 
         if (mode == 0) {
-            barcodeProps.putInt("aim_type", 5);
+           // barcodeProps.putInt("aim_type", 5);
             barcodeProps.putInt("picklist", 0);
             barcodeProps.putInt("scanning_mode", 3);
             barcodeProps.putBoolean("instant_reporting_enable", true);
@@ -284,15 +285,19 @@ public class ZebraScanActivity extends Activity {
                 startTime = (int) (System.currentTimeMillis() / 1000);
                 startTimer();
             }
-            // store decoded data
             String decodedData = initiatingIntent.getStringExtra(getResources().getString(R.string.datawedge_intent_key_data));
-            // store decoder type
-
-            String decodedLabelType = initiatingIntent.getStringExtra(getResources().getString(R.string.datawedge_intent_key_label_type));
-
             ArrayList<String> list = new ArrayList<String>();
-            list.add(decodedData);
-            list.add(decodedLabelType);
+            List<Bundle> barcode = (List<Bundle>) initiatingIntent.getSerializableExtra("com.symbol.datawedge.barcodes");
+            if (barcode != null)
+            {
+                for (int i = 0; i < barcode.size(); i++)
+                {
+                    Bundle thisBarcode = barcode.get(i);
+                    String decodedLabelType = thisBarcode.getString("com.symbol.datawedge.label_type");
+                    list.add(decodedData);
+                    list.add(decodedLabelType);
+                }
+            }
             for (ArrayList<String> l : scannedData) {
                 if (l.get(0).equals(list.get(0))) {
                     if (soundEnabled && !sonicDeathSound.isPlaying()) {
@@ -312,7 +317,7 @@ public class ZebraScanActivity extends Activity {
             }
             scannedData.add(0, list);
             scannedItems.add(0, "" + scannedData.size() + ".) " + decodedData);
-            final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ZebraScanActivity.this, android.R.layout.simple_list_item_1, scannedItems);
+            final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ZebraScanActivity.this, R.layout.list_layout, scannedItems);
             barcodeList.setAdapter(dataAdapter);
             currCount = scannedItems.size();
             setCounter();
