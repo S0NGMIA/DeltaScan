@@ -125,6 +125,8 @@ public class ZebraScanActivity extends Activity {
         if (mode == 0) {
             barcodeProps.putInt("aim_type", 5);
             barcodeProps.putInt("picklist", 0);
+            barcodeProps.putInt("scanning_mode", 3);
+            barcodeProps.putBoolean("instant_reporting_enable", true);
         } else {
             barcodeProps.putInt("aim_type", 0);
             barcodeProps.putInt("picklist", 1);
@@ -132,7 +134,6 @@ public class ZebraScanActivity extends Activity {
         barcodeProps.putInt("aim_timer", 0);
         barcodeProps.putInt("beam_timer", 0);
         barcodeProps.putString("aim_mode", "on");
-        barcodeProps.putInt("scanning_mode", 1);
 
         // Bundle "barcodeProps" within bundle "barcodeConfig"
         barcodeConfig.putBundle("PARAM_LIST", barcodeProps);
