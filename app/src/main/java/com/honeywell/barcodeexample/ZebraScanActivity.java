@@ -406,6 +406,7 @@ public class ZebraScanActivity extends Activity {
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            soundEnabled = intent.getBooleanExtra("sound", true);
             if (intent.getBooleanExtra("time", false)) {
                 timer.setVisibility(View.VISIBLE);
             } else {
@@ -420,7 +421,6 @@ public class ZebraScanActivity extends Activity {
             } else {
                 counter.setVisibility(View.INVISIBLE);
             }
-            soundEnabled = intent.getBooleanExtra("sound", true);
         }
     };
     IntentFilter filter = new IntentFilter();
@@ -485,7 +485,7 @@ public class ZebraScanActivity extends Activity {
     private void setCounter() {
         if (maxCount > 0) {
             counter.setText("COUNT: " + currCount + "/" + maxCount);
-            if(currCount>=maxCount){
+            if(soundEnabled && currCount>=maxCount){
                 sonicTallySound.start();
             }
         } else {

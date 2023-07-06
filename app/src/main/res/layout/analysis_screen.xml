@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/dialog_holo_light_frame"
             android:backgroundTint="@color/c2"
+            android:fontFamily="serif"
             android:text="@string/back"
             android:textColor="@color/c1"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +37,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/backButton"
-            app:layout_constraintVertical_bias="0.0">
-        </ListView>
+            app:layout_constraintVertical_bias="0.0"></ListView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

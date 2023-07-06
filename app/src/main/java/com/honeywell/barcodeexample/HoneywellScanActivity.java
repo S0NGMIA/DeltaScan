@@ -136,7 +136,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     }
 
     //region HoneyWell Barcode Methods
-    @Override
+     @Override
     public void onBarcodeEvent(final BarcodeReadEvent event) {
         runOnUiThread(new Runnable() {
             @Override
@@ -366,7 +366,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     private void setCounter() {
         if (maxCount > 0) {
             counter.setText("COUNT: " + currCount + "/" + maxCount);
-            if(currCount>=maxCount){
+            if(soundEnabled && currCount>=maxCount){
                 sonicTallySound.start();
             }
         } else {

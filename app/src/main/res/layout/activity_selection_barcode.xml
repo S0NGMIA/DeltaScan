@@ -9,6 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/c2"
+        android:fontFamily="serif"
         android:gravity="left"
         android:padding="6dp"
         android:text="@string/txtBarcodeTitle"
@@ -22,6 +23,7 @@
         android:layout_marginTop="22dp"
         android:background="@android:drawable/dialog_holo_light_frame"
         android:backgroundTint="@color/c2"
+        android:fontFamily="serif"
         android:text="@string/btnSwitchScanners"
         android:textColor="@color/c1" />
 

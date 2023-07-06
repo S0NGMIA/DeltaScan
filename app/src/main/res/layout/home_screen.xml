@@ -17,16 +17,17 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/dialog_holo_light_frame"
             android:backgroundTint="@color/c2"
+            android:fontFamily="serif"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="@string/btnScannerSelectBarcode"
             android:textColor="@color/c1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scan"
-            app:layout_constraintVertical_bias="0.149" />
+            app:layout_constraintVertical_bias="0.07999998" />
 
         <Button
             android:id="@+id/paint"
@@ -34,14 +35,15 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/dialog_holo_light_frame"
             android:backgroundTint="@color/c2"
+            android:fontFamily="serif"
             android:text="@string/paint"
             android:textColor="@color/c1"
-            app:layout_constraintBottom_toTopOf="@+id/scan"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.713" />
+            app:layout_constraintVertical_bias="0.216" />
 
         <Button
             android:id="@+id/scan"
@@ -49,19 +51,21 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/dialog_holo_light_frame"
             android:backgroundTint="@color/c2"
+            android:fontFamily="serif"
             android:text="@string/scan"
             android:textColor="@color/c1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.341" />
+            app:layout_constraintTop_toBottomOf="@+id/paint"
+            app:layout_constraintVertical_bias="0.06999999" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="serif"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:shadowColor="#59000000"
