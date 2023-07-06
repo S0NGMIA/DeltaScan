@@ -1,4 +1,4 @@
-#Wed Jul 05 13:48:07 PDT 2023
+#Thu Jul 06 08:42:11 PDT 2023
 base.0=C\:\\Company\\Projects\\BarcodeExampleV2\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Company\\Projects\\BarcodeExampleV2\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=C\:\\Company\\Projects\\BarcodeExampleV2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
