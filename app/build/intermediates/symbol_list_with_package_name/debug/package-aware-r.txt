@@ -3787,6 +3787,7 @@ mipmap d1sw_logo_round
 plurals mtrl_badge_content_description
 raw sonic_death_sound
 raw sonic_sound
+raw sonic_tally_sound
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description

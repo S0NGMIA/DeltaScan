@@ -57,6 +57,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     private MediaPlayer sonicSound;
     private MediaPlayer sonicSound2; //same sound as sonicSound
     private MediaPlayer sonicSound3; //same sound as sonicSound
+    private MediaPlayer sonicTallySound;
     //endregion
 
     @Override
@@ -146,10 +147,14 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                         startTime = (int) (System.currentTimeMillis() / 1000);
                         startTimer();
                     }
+                    String numericDecodedData = event.getBarcodeData();
+                    while (numericDecodedData.indexOf("\u001D") >= 0) {
+                        numericDecodedData=numericDecodedData.substring(0,numericDecodedData.indexOf("\u001D")) + numericDecodedData.substring(numericDecodedData.indexOf("\u001D")+1);
+                    }
                     // update UI to reflect the data
                     String timeScanned = "" + event.getTimestamp().substring(0, 10) + "   " + event.getTimestamp().substring(11, 16);
                     ArrayList<String> list = new ArrayList<String>();
-                    list.add("Barcode data: " + event.getBarcodeData());
+                    list.add("Barcode data: " + numericDecodedData);
                     list.add("Character Set: " + event.getCharset());
                     list.add("Code ID: " + event.getCodeId());
                     list.add("AIM ID: " + event.getAimId());
@@ -172,7 +177,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                         }
                     }
                     scannedData.add(0, list);
-                    scannedItems.add(0, "" + scannedData.size() + ".) " + event.getBarcodeData());
+                    scannedItems.add(0, "" + scannedData.size() + ".) " + numericDecodedData);
                     final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HoneywellScanActivity.this, R.layout.list_layout, scannedItems);
                     barcodeList.setAdapter(dataAdapter);
                     currCount = scannedItems.size();
@@ -359,8 +364,11 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     }
 
     private void setCounter() {
-        if (maxCount != 0) {
+        if (maxCount > 0) {
             counter.setText("COUNT: " + currCount + "/" + maxCount);
+            if(currCount>=maxCount){
+                sonicTallySound.start();
+            }
         } else {
             counter.setText("COUNT: " + currCount);
         }
@@ -430,6 +438,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
         sonicSound2 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicSound3 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicDeathSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound);
+        sonicTallySound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_tally_sound);
     }
     //endregion
 }

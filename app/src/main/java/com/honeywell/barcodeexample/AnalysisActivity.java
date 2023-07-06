@@ -12,18 +12,23 @@ import java.util.ArrayList;
 
 public class AnalysisActivity extends Activity {
     private Button backButton;
+    private ListView barcodeList;
+    private ArrayList<String> dataList;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.analysis_screen);
-        ListView barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
-        final ArrayAdapter<String> analysisData = new ArrayAdapter<String>(AnalysisActivity.this, R.layout.list_layout, getIntent().getStringArrayListExtra("data"));
-        //if (analysisData.getItem(1).contains("CODE128")) {
-          //  GS1Analysis();
-       //} else {
-            barcodeList.setAdapter(analysisData);
-        //}
+        barcodeList = (ListView) findViewById(R.id.listViewBarcodeData);
+        dataList = getIntent().getStringArrayListExtra("data");
+        String numericDecodedData = dataList.get(0);
+        while (numericDecodedData.indexOf("\u001D") >= 0) {
+            numericDecodedData = numericDecodedData.substring(0, numericDecodedData.indexOf("\u001D")) + numericDecodedData.substring(numericDecodedData.indexOf("\u001D") + 1);
+        }
+        dataList.set(0, numericDecodedData);
+        final ArrayAdapter<String> analysisData = new ArrayAdapter<String>(AnalysisActivity.this, R.layout.list_layout, dataList);
+        barcodeList.setAdapter(analysisData);
         ActivitySetting();
+        GS1Analysis(dataList.get(0));
     }
 
     public void ActivitySetting() {
@@ -36,8 +41,9 @@ public class AnalysisActivity extends Activity {
         });
     }
 
-    private void GS1Analysis() {
-        String[][] identifiers = new String[5][3];  //[0][x]=AI     [x][1]=data name    [x][2]=fixed, fixedvar, var length  (fixedvar has options of length not a range, var has a range)      [x][3]=length or min/max
+    private void GS1Analysis(String code) {
+        String[][] identifiers = new String[75][4];  //[0][x]=AI     [x][1]=data name    [x][2]=fixed, var length      [x][3]=length or min/max
+        boolean validGS1 = true;
         //region
         identifiers[0][0] = "00"; //first digit is an extension digit and the 18th digit is the check digit
         identifiers[0][1] = "SSCC";
@@ -46,13 +52,13 @@ public class AnalysisActivity extends Activity {
 
         identifiers[1][0] = "01";
         identifiers[1][1] = "GTIN";
-        identifiers[1][2] = "fixedvar";
-        identifiers[1][3] = "8 12 13 14";  //gtin       last digit is check digit
+        identifiers[1][2] = "fixed";
+        identifiers[1][3] = "14";  //gtin       last digit is check digit
 
         identifiers[2][0] = "02";
         identifiers[2][1] = "CONTENT";
-        identifiers[2][2] = "fixedvar";
-        identifiers[2][3] = "8 12 13 14";   //gtin       last digit is check digit
+        identifiers[2][2] = "fixed";
+        identifiers[2][3] = "14";   //gtin       last digit is check digit
 
         identifiers[3][0] = "10";
         identifiers[3][1] = "BATCH/LOT";
@@ -416,5 +422,103 @@ public class AnalysisActivity extends Activity {
         identifiers[74][2] = "fixed";
         identifiers[74][3] = "6";
         //endregion
+        String field = "";
+        String ai = "";
+        String gs = "\u001D";
+        for (int i = 0; i < code.length(); i++) {
+            if ("0123456789".contains(code.substring(i, i + 1))) {
+                ai += code.charAt(i);
+                if(ai.length()>4){
+                    return;
+                }
+                for (int ident = 0; ident < identifiers.length; ident++) {
+                    if (identifiers[ident][0].equals(ai)) {
+                        String info = identifiers[ident][1] + ": ";
+                        if (identifiers[ident][2].equals("fixed")) {
+                            if (code.length() >= i + 1 + Integer.parseInt(identifiers[ident][3])) {
+                                if (ident >= 4 && ident <= 9) {
+                                    String date = date(Integer.parseInt(code.substring(i + 1, i + 1 + Integer.parseInt(identifiers[ident][3]))));
+                                    if(date.equals("invalid")){
+                                        dataList.add("Invalid GS1 Barcode");
+                                        final ArrayAdapter<String> analysisData = new ArrayAdapter<String>(AnalysisActivity.this, R.layout.list_layout, dataList);
+                                        barcodeList.setAdapter(analysisData);
+                                        return;
+                                    }
+                                    info += date;
+                                } else {
+                                    info += code.substring(i + 1, i + 1 + Integer.parseInt(identifiers[ident][3]));
+                                }
+                                i += Integer.parseInt(identifiers[ident][3]);
+                            } else {
+                                info += "error";
+                            }
+                        } else if (identifiers[ident][2].equals("var")) {
+                            int delim;
+                            String str = "";
+                            if (code.substring(i).contains(gs)) {
+                                delim = code.substring(i).indexOf(gs) + i - 1;
+                                for (int n = i + 1; n < code.length() && n <= delim; n++) {
+                                    str += code.charAt(n);
+                                }
+                                i = delim;
+                            } else {
+                                str += code.substring(i + 1);
+                                i = code.length();
+                            }
+                            if(str.length()>Integer.parseInt(identifiers[ident][3].substring(identifiers[ident][3].indexOf(" ")+1))){
+                                dataList.add("Invalid GS1 Barcode");
+                                final ArrayAdapter<String> analysisData = new ArrayAdapter<String>(AnalysisActivity.this, R.layout.list_layout, dataList);
+                                barcodeList.setAdapter(analysisData);
+                                return;
+                            }
+                            info += str;
+                        }
+                        dataList.add(info);
+                        ai = "";
+                        info = "";
+                        ident = identifiers.length;
+                    } else if (identifiers[ident][0].equals(ai + "n")) {
+                        String info = identifiers[ident][1] + ": ";
+                        if (code.length() >= i + 2 + Integer.parseInt(identifiers[ident][3])) {
+                            int decimal = Integer.parseInt("" + code.charAt(i + 1));
+                            double num = (double) Integer.parseInt(code.substring(i + 2, i + 2 + Integer.parseInt(identifiers[ident][3])));
+                            info += num / (Math.pow(10, decimal));
+                            i += 1 + Integer.parseInt(identifiers[ident][3]);
+                        } else {
+                            info += "error";
+                        }
+                        dataList.add(info);
+                        ai = "";
+                        info = "";
+                        ident = identifiers.length;
+                    }
+                }
+            }
+        }
+        final ArrayAdapter<String> analysisData = new ArrayAdapter<String>(AnalysisActivity.this, R.layout.list_layout, dataList);
+        barcodeList.setAdapter(analysisData);
+    }
+
+    private String date(int yymmdd) {
+        String date = "";
+        String[] months = {" January", " February", " March", " April", " May", " June", " July", " August", " September", " October", " November", " December"};
+        int day = yymmdd % 100;
+        yymmdd /= 100;
+        int mon = yymmdd % 100;
+        yymmdd /= 100;
+        int year = yymmdd % 100;
+        if(mon>12 || day>31){
+            return "invalid";
+        }
+        date += "20";
+        if (year < 10) {
+            date += "0";
+        }
+        date += year;
+        date += months[mon - 1];
+        if (day > 0) {
+            date += " " + day;
+        }
+        return date;
     }
 }

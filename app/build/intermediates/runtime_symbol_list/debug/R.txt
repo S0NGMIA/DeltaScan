@@ -3786,6 +3786,7 @@ int mipmap d1sw_logo_round 0x7f0e0002
 int plurals mtrl_badge_content_description 0x7f0f0000
 int raw sonic_death_sound 0x7f100001
 int raw sonic_sound 0x7f100000
+int raw sonic_tally_sound 0x7f100002
 int string abc_action_bar_home_description 0x7f110000
 int string abc_action_bar_up_description 0x7f110001
 int string abc_action_menu_overflow_description 0x7f110002
