@@ -301,7 +301,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
             } else {
                 timer.setVisibility(View.INVISIBLE);
                 startTime = -1;
-                timer.setText("TIME: " + 0 + "s");
+                timer.setText(R.string.time);
             }
             maxCount = intent.getIntExtra("count", 0);
             if (maxCount != -1) {
