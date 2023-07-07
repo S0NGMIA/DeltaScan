@@ -54,6 +54,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     private boolean isTimerOn;
     private boolean soundEnabled;
     private MediaPlayer sonicDeathSound;
+    private MediaPlayer sonicDeathSound2;//same sound as sonicDeathSound
     private MediaPlayer sonicSound;
     private MediaPlayer sonicSound2; //same sound as sonicSound
     private MediaPlayer sonicSound3; //same sound as sonicSound
@@ -136,7 +137,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     }
 
     //region HoneyWell Barcode Methods
-     @Override
+    @Override
     public void onBarcodeEvent(final BarcodeReadEvent event) {
         runOnUiThread(new Runnable() {
             @Override
@@ -144,12 +145,12 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                 if (maxCount <= 0 || currCount < maxCount) {
                     if (timer.isShown() && !isTimerOn) {
                         isTimerOn = true;
-                        startTime = (int) (System.currentTimeMillis() / 1000);
+                        startTime = (int) (System.currentTimeMillis());
                         startTimer();
                     }
                     String numericDecodedData = event.getBarcodeData();
                     while (numericDecodedData.indexOf("\u001D") >= 0) {
-                        numericDecodedData=numericDecodedData.substring(0,numericDecodedData.indexOf("\u001D")) + numericDecodedData.substring(numericDecodedData.indexOf("\u001D")+1);
+                        numericDecodedData = numericDecodedData.substring(0, numericDecodedData.indexOf("\u001D")) + numericDecodedData.substring(numericDecodedData.indexOf("\u001D") + 1);
                     }
                     // update UI to reflect the data
                     String timeScanned = "" + event.getTimestamp().substring(0, 10) + "   " + event.getTimestamp().substring(11, 16);
@@ -161,8 +162,12 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                     list.add("Timestamp: " + timeScanned);
                     for (ArrayList<String> l : scannedData) {
                         if (l.get(0).equals(list.get(0))) {
-                            if (soundEnabled && !sonicDeathSound.isPlaying()) {
-                                sonicDeathSound.start();
+                            if (soundEnabled) {
+                                if (!sonicDeathSound.isPlaying()) {
+                                    sonicDeathSound.start();
+                                } else if (!sonicDeathSound2.isPlaying()) {
+                                    sonicDeathSound2.start();
+                                }
                             }
                             return;
                         }
@@ -172,7 +177,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                             sonicSound.start();
                         } else if (!sonicSound2.isPlaying()) {
                             sonicSound2.start();
-                        }else if (!sonicSound3.isPlaying()) {
+                        } else if (!sonicSound3.isPlaying()) {
                             sonicSound3.start();
                         }
                     }
@@ -182,8 +187,12 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                     barcodeList.setAdapter(dataAdapter);
                     currCount = scannedItems.size();
                     setCounter();
-                } else if (soundEnabled && !sonicDeathSound.isPlaying()) {
-                    sonicDeathSound.start();
+                } else if (soundEnabled) {
+                    if (!sonicDeathSound.isPlaying()) {
+                        sonicDeathSound.start();
+                    } else if (!sonicDeathSound2.isPlaying()) {
+                        sonicDeathSound2.start();
+                    }
                 }
             }
         });
@@ -366,7 +375,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     private void setCounter() {
         if (maxCount > 0) {
             counter.setText("COUNT: " + currCount + "/" + maxCount);
-            if(soundEnabled && currCount>=maxCount){
+            if (soundEnabled && maxCount > 0 && currCount >= maxCount) {
                 sonicTallySound.start();
             }
         } else {
@@ -376,8 +385,11 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
 
     private String getCurrTime(int initalTime) {
         String time = "";
-        int sec = initalTime + ((int) (System.currentTimeMillis() / 1000)) - startTime;
-        currTime = sec;
+        int millis = initalTime +  (int) (System.currentTimeMillis()) - startTime;
+        currTime = millis;
+        int sec = millis/1000;
+        millis%=1000;
+        millis/=10;
         if (sec >= 60) {
             int min = sec / 60;
             sec %= 60;
@@ -391,10 +403,14 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
             time += "00:";
         }
         if (sec < 10) {
-            time += "0" + sec;
+            time += "0" + sec + ".";
         } else {
-            time += sec;
+            time += sec + ".";
         }
+        if(millis<10){
+            time += "0";
+        }
+        time += "" + millis;
         return time;
     }
 
@@ -416,7 +432,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
                     }
                 });
             }
-        }, 1000, 1000);
+        }, 0, 10);
     }
 
     private void setUp() {
@@ -438,6 +454,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
         sonicSound2 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicSound3 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicDeathSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound);
+        sonicDeathSound2 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound);
         sonicTallySound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_tally_sound);
     }
     //endregion

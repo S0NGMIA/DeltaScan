@@ -88,6 +88,7 @@ public class ZebraScanActivity extends Activity {
     private boolean isTimerOn;
     private boolean soundEnabled;
     private MediaPlayer sonicDeathSound;
+    private MediaPlayer sonicDeathSound2; //same sound as sonicDeathSound
     private MediaPlayer sonicSound;
     private MediaPlayer sonicSound2; //same sound as sonicSound
     private MediaPlayer sonicSound3; //same sound as sonicSound
@@ -155,6 +156,9 @@ public class ZebraScanActivity extends Activity {
         barcodeProps.putString("aim_mode", "on");
 
         barcodeProps.putBoolean("decoder_gs1_datamatrix", true);
+        barcodeProps.putBoolean("decoder_microqr", true);
+        barcodeProps.putBoolean("decoder_i2of5", true);
+        barcodeProps.putInt("remote_scanner_audio_feedback_mode", 3);
 
         // Bundle "barcodeProps" within bundle "barcodeConfig"
         barcodeConfig.putBundle("PARAM_LIST", barcodeProps);
@@ -302,7 +306,7 @@ public class ZebraScanActivity extends Activity {
         if (maxCount <= 0 || currCount < maxCount) {
             if (timer.isShown() && !isTimerOn) {
                 isTimerOn = true;
-                startTime = (int) (System.currentTimeMillis() / 1000);
+                startTime = (int) (System.currentTimeMillis());
                 startTimer();
             }
             String decodedData = initiatingIntent.getStringExtra(getResources().getString(R.string.datawedge_intent_key_data));
@@ -327,8 +331,12 @@ public class ZebraScanActivity extends Activity {
             }
             for (ArrayList<String> l : scannedData) {
                 if (l.get(0).equals(list.get(0))) {
-                    if (soundEnabled && !sonicDeathSound.isPlaying()) {
-                        sonicDeathSound.start();
+                    if (soundEnabled) {
+                        if (!sonicDeathSound.isPlaying()) {
+                            sonicDeathSound.start();
+                        } else if (!sonicDeathSound2.isPlaying()) {
+                            sonicDeathSound2.start();
+                        }
                     }
                     return;
                 }
@@ -348,8 +356,12 @@ public class ZebraScanActivity extends Activity {
             barcodeList.setAdapter(dataAdapter);
             currCount = scannedItems.size();
             setCounter();
-        } else if (soundEnabled && !sonicDeathSound.isPlaying()) {
-            sonicDeathSound.start();
+        } else if (soundEnabled) {
+            if (!sonicDeathSound.isPlaying()) {
+                sonicDeathSound.start();
+            } else if (!sonicDeathSound2.isPlaying()) {
+                sonicDeathSound2.start();
+            }
         }
     }
 
@@ -485,7 +497,7 @@ public class ZebraScanActivity extends Activity {
     private void setCounter() {
         if (maxCount > 0) {
             counter.setText("COUNT: " + currCount + "/" + maxCount);
-            if(soundEnabled && currCount>=maxCount){
+            if(soundEnabled && maxCount>0 && currCount>=maxCount){
                 sonicTallySound.start();
             }
         } else {
@@ -495,8 +507,11 @@ public class ZebraScanActivity extends Activity {
 
     private String getCurrTime(int initalTime) {
         String time = "";
-        int sec = initalTime + ((int) (System.currentTimeMillis() / 1000)) - startTime;
-        currTime = sec;
+        int millis = initalTime +  (int) (System.currentTimeMillis()) - startTime;
+        currTime = millis;
+        int sec = millis/1000;
+        millis%=1000;
+        millis/=10;
         if (sec >= 60) {
             int min = sec / 60;
             sec %= 60;
@@ -510,10 +525,14 @@ public class ZebraScanActivity extends Activity {
             time += "00:";
         }
         if (sec < 10) {
-            time += "0" + sec;
+            time += "0" + sec + ".";
         } else {
-            time += sec;
+            time += sec + ".";
         }
+        if(millis<10){
+            time += "0";
+        }
+        time += "" + millis;
         return time;
     }
 
@@ -535,7 +554,7 @@ public class ZebraScanActivity extends Activity {
                     }
                 });
             }
-        }, 1000, 1000);
+        }, 0, 10);
     }
 
     private void setUp() {
@@ -557,6 +576,7 @@ public class ZebraScanActivity extends Activity {
         sonicSound2 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicSound3 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_sound);
         sonicDeathSound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound);
+        sonicDeathSound2 = MediaPlayer.create(getApplicationContext(), R.raw.sonic_death_sound);
         sonicTallySound = MediaPlayer.create(getApplicationContext(), R.raw.sonic_tally_sound);
     }
     //endregion
