@@ -375,7 +375,7 @@ public class HoneywellScanActivity extends Activity implements BarcodeReader.Bar
     private void setCounter() {
         if (maxCount > 0) {
             counter.setText("COUNT: " + currCount + "/" + maxCount);
-            if (soundEnabled && maxCount > 0 && currCount >= maxCount) {
+            if (soundEnabled && currCount >= maxCount) {
                 sonicTallySound.start();
             }
         } else {

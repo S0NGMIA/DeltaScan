@@ -497,7 +497,7 @@ public class ZebraScanActivity extends Activity {
     private void setCounter() {
         if (maxCount > 0) {
             counter.setText("COUNT: " + currCount + "/" + maxCount);
-            if(soundEnabled && maxCount>0 && currCount>=maxCount){
+            if(soundEnabled && currCount>=maxCount){
                 sonicTallySound.start();
             }
         } else {
